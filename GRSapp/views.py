@@ -71,14 +71,8 @@ def loadmobiles(request):
     user = request.COOKIES.get('username')
     mobiles = Mobiles.objects.all()
     mobiles = make_ratings(mobiles)
-    tr_mobile_one = Mobiles.objects.order_by('rating').reverse()[:4]
-    tr_mobile_two = Mobiles.objects.order_by('rating').reverse()[4:8]
-    tr_mobile_one = make_ratings(tr_mobile_one)
-    tr_mobile_two = make_ratings(tr_mobile_two)
-    lt_mobile_one = tr_mobile_one
-    lt_mobile_two = tr_mobile_two
-    params = {'user':user,"mobiles":mobiles,'tr_one':tr_mobile_one,'tr_two':tr_mobile_two,'lt_one':lt_mobile_one,'lt_two':lt_mobile_two}
-    return render(request,'GRSapp/showMobiles.html',params)   
+    params = {"user":user,"mobiles":mobiles}
+    return render(request,'GRSapp/loadMobiles.html',params)
         
     
 

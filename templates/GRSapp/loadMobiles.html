@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% comment %} {{slug }} Review Page {% endcomment %}
+{% endblock title %}
+
+
+{% comment %} {% block csslink %}
+    <link rel="stylesheet" href="{% static 'css/loadMobiles.css' %}" />
+{% endblock csslink %} {% endcomment %}
+
+
+{% block body %}
+    {% if mobiles %}
+        {% for mobile in mobiles %}
+            <div class="mobile-viewer mt-1 mb-1 container">
+                <button class="btn btn-primary btn-lg btn-block text-left" data-toggle="collapse" data-target="#mobile{{forloop.counter}}">
+                {{mobile}}
+                </button>
+                <div class="collapse" id="mobile{{forloop.counter}}">
+                    <div class="card card-body">
+                       <ul class="list-group">
+                            <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{mobile.brandname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{mobile.modelname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Battery Capacity : </span> <span class="text-warning">{{mobile.battery_cap}} MAH</span></li>
+                            <li class="list-group-item"><span class="text-success">Internal Storage : </span> <span class="text-warning">{{mobile.internal_mem}} GB</span></li>
+                            <li class="list-group-item"><span class="text-success">Front Camera Pixels : </span> <span class="text-warning">{{mobile.front_cam}} pixels</span></li>
+                            <li class="list-group-item"><span class="text-success">Back Camera Pixels : </span> <span class="text-warning">{{mobile.back_cam}} pixels</span></li>
+                            <li class="list-group-item"><span class="text-success">Display Size : </span> <span class="text-warning">{{mobile.display}} inches</span></li>
+                            <li class="list-group-item"><span class="text-success">RAM : </span> <span class="text-warning">{{mobile.ram}} GB</span></li>
+                            <li class="list-group-item"><span class="text-success">Price : </span> <span class="text-warning">{{mobile.price}} /-</span></li>
+                       </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}
+
+
+
+
+
+{% comment %} {% if mobiles %}
+<div class="row justify-content-center">
+            {% for mobile in mobiles %}
+            <div class="card border border-success mb-5 mx-3" style="width: 18rem;">
+            
+            <div class="card-body" style="background-image:url('/media/{{mobile.mob_pic}}');background-size:cover;">
+                <div class="header d-inline w-100">
+                     <h5 class="card-title text-danger ">{{mobile.brandname}}&nbsp;,{{mobile.modelname}}</h5>
+                     <i class="fa fa-heart float-right border border-rounded py-1 px-1 text-danger">
+                     <span class="text-primary">&nbsp;{{mobile.hearts}}&nbsp;</span></i>
+                </div>
+               
+                <p class="font-weight-bold">RAM : {{mobile.ram}} GB</p>
+                <p class="font-weight-bold">Cam Pixels : {{mobile.back_cam}} pixel</p>
+                <p class="font-weight-bold">Internal Memory : {{mobile.internal_mem}} GB</p>
+                <p class="font-weight-bold">Battery Capacity : {{mobile.battery_cap}} MAH</p>
+                <a href="#" class="btn btn-primary m-auto">See More</a>
+                
+                <div class="rating d-flex mt-2">
+                    <small class="ml-1 text-danger">Rating&nbsp;:&nbsp;</small>
+                    {% for i in mobile.rating%}
+                    <span class="fa fa-star mr-1" style="color:orange;"></span>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            </div>
+
+            {% endfor %}
+            
+        </div>
+{% else %}
+Mobiles not present
+{% endif %} {% endcomment %}
