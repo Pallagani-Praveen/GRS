@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+Contact Form
+{% endblock title %}
+
+{% block contactactive %}
+active
+{% endblock contactactive %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+{% endblock csslink %}
+
+{% block jslink %}
+<script src="{% static 'js/tilt.jquery.min.js' %}"></script>
+{% endblock jslink %}
+
+{% block body %}
+<div class="contact1 container mt-2">
+		<div class="container-contact1">
+			<div class="contact1-pic js-tilt" data-tilt>
+				<img src="{% static 'images/img-01.png' %}" alt="IMG">
+			</div>
+
+			<form class="contact1-form validate-form" action="/issue" method="post">
+            {% csrf_token %}
+				<span class="contact1-form-title text-success">
+					Get in Touch
+				</span>
+
+				<div class="wrap-input1 validate-input" data-validate = "Name is required">
+					<input class="input1" type="text" name="name" placeholder="Name">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input1" type="text" name="email" placeholder="Email">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Subject is required">
+					<input class="input1" type="text" name="subject" placeholder="Subject">
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="wrap-input1 validate-input" data-validate = "Message is required">
+					<textarea class="input1" name="message" placeholder="Message"></textarea>
+					<span class="shadow-input1"></span>
+				</div>
+
+				<div class="g-recaptcha mx-5 mb-2" data-sitekey="6LeKRd4UAAAAAGG8dVFKRTUhZOrVRyuHENvpaobR" required></div>
+
+				<div class="container-contact1-form-btn">
+					<button class="contact1-form-btn">
+						<span>
+							Send Email &nbsp;
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock body %}
+
+
+{% block updisplay %}
+d-none
+{% endblock updisplay %}
+
+
+{% block js %}
+
+$(function(){
+    $('.email_alert').hide()
+    $('.issue_alert').hide();
+    $('.suggts_alert').hide();
+});
+
+function validatecontactform(){
+    var email = document.forms["contactform"]["email"].value;
+    var issue = document.forms["contactform"]["issue"].value;
+    var suggts = document.forms["contactform"]["suggts"].value;
+    console.log(email);
+    
+    if(email.slice(email.length-3)!=="com"){
+       $('.email_alert').show();
+       $('.issue_alert').hide();
+       $('.suggts_alert').hide();
+
+       return false;
+    } 
+    else if(issue.length<20){
+        $('.issue_alert').show();
+        $('.email_alert').hide();
+        $('.suggts_alert').hide();
+        return false;
+
+    } 
+    else if(suggts.length<20){
+        $('.suggts_alert').show();
+        $('.email_alert').hide();
+        $('.issue_alert').hide();
+        return false;
+
+    } 
+}
+{% endblock js %}

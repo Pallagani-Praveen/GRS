@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  {% load static %}
+  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lemonada:300,400&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="{% static 'footer.css' %}">
+   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}"/>
+   <link rel="stylesheet" href="{% static 'css/introjs.css' %}"/>
+   {% block csslink %}
+   {% endblock csslink %}
+    <style rel="stylesheet">
+ .user_pic{
+        width:35px;
+        height:35px;
+        border-radius:50%;
+    }
+    .profile-btn{
+        border:solid green 2px;
+        border-radius:6px;
+    }
+    .profile-btn:hover{
+       background-color:green;
+    }
+    .close{
+        transition: transform .25s, opacity .25s;
+    }
+    .close:before{
+        content:"\0274e";
+    }
+    .close:hover{
+        transform:rotate(270deg);
+    }
+
+    body{   
+       background-image:linear-gradient(to bottom right, #30E8BF, #FF8235);
+       background-size:cover;
+       font-family: 'Lemonada', cursive; 
+    }
+
+    html{
+        scroll-behavior:smooth;
+    }
+
+    #signupmodal,#loginModal{
+
+        z-index:10000;
+    }
+    .scrollUp{
+        position:sticky;
+        bottom:50px;
+    }
+    .collapse li:hover{
+        border-bottom:solid white 4px;
+        border-bottom-left-radius:5px;
+        border-bottom-right-radius:5px;
+
+    }
+
+    nav ul li:hover{
+        text-shadow:2px 2px white;
+    }
+    
+    #icon{
+        width:35px;
+        height:35px;
+    }
+
+    .footer img{
+        height:25px;
+        width:25px;
+    }
+    
+
+    {% block css %}
+    {% endblock css %}
+    </style>
+
+    <title>{% block title %} {% endblock title %}</title>
+  </head>
+  <body>
+  
+     
+{% comment %} Signup Modal {% endcomment %}
+    <form action="/otp" method="POST" id="signup-modal-form" name="signup-modal-form" onsubmit="return validateForm()">
+        {% csrf_token %}
+                <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signupmodal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-md" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-danger text-light">
+                    <h5 class="modal-title" id="signupModalScrollableTitle">SignUp Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                    <label for="First Name"class="lead">First Name</label>
+                    <input type="text" name="fname" placeholder="Enter First Name" class="form-control" required>
+                    <span class="alert alert-warning py-0" id="fname_alert" role="alert">
+                        <p id="fname_error"></p>
+                    </span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Last Name"class="lead">Last Name</label>
+                    <input type="text" name="lname" placeholder="Enter Last Name" class="form-control" required>
+                    <span class="alert alert-warning py-0" id="lname_alert" role="alert">
+                        <p id="lname_error"></p>
+                    </span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Email"class="lead">Email</label>
+                    <input type="email" name="email" placeholder="Enter Email" class="form-control" required>
+                    <span class="alert alert-warning py-0" id="email_alert" role="alert">
+                        <p id="email_error"></p>
+                    </span>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Gender"class="lead">Gender</label>
+                    <br>
+                    <label for="Male"class="lead mx-1">Male</label>
+                     <input type="radio" name="gender" value="Male" required>
+                    <label for="Female"class="lead mx-1">Female</label>
+                     <input type="radio" name="gender" value="Female" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="DOB"class="lead">DOB</label>
+                    <input type="date" name="dob" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="picture"class="lead">Choose a picture for your profile</label>
+                    <input type="file" name="user_pic" accept="image/*" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Password"class="lead">Password</label>
+                    <input type="password" name="pass1" placeholder="Enter Password" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="Password"class="lead">Re-Enter Password</label>
+                    <input type="password" name="pass2" placeholder=" Re-Enter Password" class="form-control" required>
+                    <span class="alert alert-warning py-0" id="passwd_alert" role="alert">
+                        <p id="passwd_error"></p>
+                    </span>
+                    </div>   
+                     
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button type="submit" class="btn btn-primary" id="signup-btn">Submit</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+    </form>
+
+{% comment %} Login Modal {% endcomment %}
+    <form action="/login" method="POST" id="login-modal-from">
+             {% csrf_token %}
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header bg-success text-light">
+                    <h5 class="modal-title" id="loginModalLabel">Login Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                   <div class="form-group">
+                   <label for="email" class="lead font-weight-bold">Email/UserId</label>
+                   <input type="text" name="email" placeholder="Enter Email/UserId" class="form-control" required>
+                   </div>
+                   <div class="form-group">
+                   <label for="password" class="lead font-weight-bold">Password</label>
+                   <input type="password" name="passwd" placeholder="Enter Password" class="form-control" required>
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-danger">Reset</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </div>
+            </div>
+            </div>
+    </form>
+
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main" id="navbar">
+            <a class="navbar-brand" href="#menu"><img id="icon" src="{% static 'icon.jpg' %}" alt="GRS" data-step="1" data-intro="click the icon to see sidebar" data-position="bottom"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item  {% block homeactive %} {% endblock homeactive%}">
+                    <a class="nav-link text-warning font-weight-bold" href="/" data-step="2" data-intro="To get back to the home page of this site" data-position="bottom">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item {% block GRSappactive %} {% endblock GRSappactive%}">
+                    <a class="nav-link text-warning font-weight-bold" href="/GRSapp" data-step="3" data-intro="Takes you to the blog page" data-position="bottom">GRSapp</a>
+                </li> 
+                
+                <li class="nav-item {% block contactactive %} {% endblock contactactive%}">
+                    <a class="nav-link text-warning font-weight-bold" href="/contact" data-step="4" data-intro="Mention your issue in contact form" data-position="bottom">Contact</a>
+                </li>
+                <li class="nav-item {% block aboutactive %} {% endblock aboutactive%}">
+                    <a class="nav-link text-warning font-weight-bold" href="/about" data-step="5" data-intro="Tells you about the info of development team" data-position="bottom">About</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
+                <button class="btn btn-primary my-2 mr-4 my-sm-0" type="submit"><i class="fa fa-search">&nbsp;&nbsp;</i>Search</button>
+                </form>
+                {% if user == None %}
+                <button class="btn btn-outline-warning text-light mx-1 py-1" data-toggle="modal" data-target="#loginModal"><span class="lead font-weight-bold">Login</span>&nbsp;&nbsp;<i class="fa fa-sign-in" style="font-size:25px;" aria-hidden="true"></i></button>
+                <button class="btn btn-outline-warning text-light      py-1" data-toggle="modal" data-target="#signupmodal"><span class="lead font-weight-bold">SignUp</span>&nbsp;&nbsp;<i class="fa fa-user-plus" style="font-size:25px;color:white"></i></button>
+                {% else %} 
+                {% comment %} fa fa-user-circle-o {% endcomment %}
+                <div class="dropdown show">
+                    <a class="btn btn-success dropdown-toggle  text-light lead mr-2 ml-2 profile-btn px-2 py-2" style="font-size:22px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <img src="media/{{user.user_pic}}" alt="Image not Found" class="user_pic">&nbsp;{{user.username}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item lead text-success" href="/viewprofile">View Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item lead text-success" href="/logout">Logout</a>
+                        
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+            </nav>
+
+        
+
+            {% for message in messages %}
+                    <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+                            <strong>Message : </strong> {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                            </button>
+                    </div>
+           {% endfor %}
+
+          
+			<nav id="menu">
+            {% if user == None %}
+            <span class="text-primary">Login|SignUP</span>
+            {% else %}
+             <img src="media/{{user.user_pic}}" alt="Image not Found" class="user_pic">&nbsp;{{user.username}}
+            {% endif %}
+           
+            <a href="#menu" class="fa fa-arrow-right float-right" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
+				<ul class="links">
+                    {% if user != None %}
+					<li><a href="/viewprofile">Update Profile</a></li>
+                    {% endif %}
+                    
+					<li><a href="#categories">Categories</a></li>
+					<li><a href="#">Elements</a></li>
+                    
+                    {% if user != None %}
+					<li><a href="/logout">logout</a></li>
+                    <hr>
+                    {% endif %}
+				</ul>
+			</nav>
+
+		
+			
+
+        {% block body %}
+        {% endblock body %}
+    
+    <div class="scrollUp float-right mr-5 {% block updisplay %}{% endblock updisplay %}">
+     <button class="border border-dark rounded-circle bg-dark text-light px-3 py-2" id="top-btn"><i class="fa fa-angle-up" style="font-size:36px;color:white"></i></button>
+    </div>
+
+    <footer class="footer-distributed" id="footer" data-step="6" data-intro="Footer containing the basic info about the site" data-position="top">
+        <div class="footer-left">
+          <img src="{% static 'icon.jpg' %}" style="width:30px;height:30px;">
+                <h3>About<span>GRS</span></h3>
+                <p class="footer-links">
+                    <a href="/">Home</a>
+                    |
+                    <a href="/GRSapp">Blog</a>
+                    |
+                    <a href="/about">About</a>
+                    |
+                    <a href="/contact">Contact</a>
+                </p>
+                <p class="footer-company-name">© 2020 Gadget Review System</p>
+            </div>
+            <div class="footer-center">
+                <div>
+                    <i class="fa fa-map-marker text-danger"></i>
+                      <p><span>630 - Gnan Marg,
+                         Sri City, Satyavedu Mandal</span>
+                        Chittoor District, Andhra Pradesh - 517646</p>
+                </div>
+                <div>
+                    <i class="fa fa-phone text-success"></i>
+                    <p>+91 9856422781</p>
+                </div>
+                <div>
+                    <i class="fa fa-envelope text-primary"></i>
+                    <p><a href="mailto:reviewservice999@gmail.com">reviewservice999@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="footer-right">
+                <p class="footer-company-about">
+                    <span>About US</span>
+                    We provide you with the latest reviews on all gadgets and home appliances</p>
+                <div class="footer-icons">
+                    <a href="https://www.facebook.com/Gadgets.999"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+    </footer>
+   
+    
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+	<script src="{% static 'js/skel.min.js' %}"></script>
+	<script src="{% static 'js/util.js' %}"></script>
+	<script src="{% static 'js/sidebar.js' %}"></script>
+	<script src="{% static 'js/intro.js' %}"></script>
+    
+    {% block jslink %}
+    {% endblock jslink %}
+
+
+    <script type="text/javascript">
+
+     
+    
+    $(function(){
+        $('#fname_alert').css('display','none');
+        $('#lname_alert').css('display','none');
+        $('#email_alert').css('display','none');
+        $('#passwd_alert').css('display','none');  
+         $('#top-btn').css('display','none');
+        $(window).scroll(function(){
+          if($(this).scrollTop()>400)
+          {
+            $('#top-btn').css('display','block');
+          }
+          else{
+            $('#top-btn').css('display','none');
+          }
+        });
+
+        $('#top-btn').click(function(){
+          $(window).scrollTop(0);
+        });
+    });
+
+
+
+    function validateForm() {
+        var fname = document.forms["signup-modal-form"]["fname"].value;
+        var lname = document.forms["signup-modal-form"]["lname"].value;
+        var email = document.forms["signup-modal-form"]["email"].value;
+        var pass1 = document.forms["signup-modal-form"]["pass1"].value;
+        var pass2 = document.forms["signup-modal-form"]["pass2"].value;
+
+        console.log(fname);
+        if(fname.length<4){
+            fname_error = 'atleast 4 charecters should be there';
+            $('#fname_alert').css('display','block');
+            document.getElementById('fname_error').innerHTML = fname_error;
+            return false;
+        }
+        if(lname.length<4){
+            lname_error = 'atleast 4 charecters should be there';
+            $('#lname_alert').css('display','block');
+            document.getElementById('lname_error').innerHTML = lname_error;
+            return false;
+        }
+        console.log(email.slice(email.length-3,email.length));
+        if(email.slice(email.length-3,email.length)!=="com"){
+            email_error = 'not a valid email';
+            $('#email_alert').css('display','block');
+            document.getElementById('email_error').innerHTML = email_error;
+            return false;
+        }
+        if(pass1!==pass2){
+            passwd_error = 'both passwords should match';
+            $('#passwd_alert').css('display','block');
+            document.getElementById('passwd_error').innerHTML = passwd_error;
+            return false;
+        }
+
+        return true
+        
+    }
+    {% comment %} $(function(){
+        $(document).on('submit','#signup-modal-form',function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'POST',
+                url:'/signup',
+                data:{
+                    fname:$('input[name="fname"]').val(),
+                    lname:$('input[name="lname"]').val(),
+                    email:$('input[name="email"]').val(),
+                    gender:$('input[name="gender"]:checked').val(),
+                    dob:$('input[type="date"]').val(),
+                    pass1:$('input[name="pass1"]').val(),
+                    pass2:$('input[name="pass2"]').val(),
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                success:function(){
+                    alert('Inserted to database');
+                }
+            });
+        });
+    }); {% endcomment %}
+    
+   
+
+    {% block js %}
+    {% endblock js %} 
+    </script>
+   
+  </body>
+</html>

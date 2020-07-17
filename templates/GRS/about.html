@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+About GRS
+{% endblock title %}
+
+{% block aboutactive %}
+active
+{% endblock aboutactive %}
+
+{% block css %}
+#banner{
+    background-image:url('{% static 'images/about_banner.jpg'%}');
+        background-size:cover;
+        
+        background-repeat:no-repeat;
+}
+
+.content{
+    max-height:200px;
+    overflow:hidden;
+}
+
+{% endblock css %}
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock csslink %}j
+
+{% block jslink %}
+
+{% endblock jslink %}
+
+{% block body %}
+
+<div class="d-flex" id="banner" style="width:100%;height:100vh;">
+        <div class="content text-danger h1 m-auto w-50 container">
+            This is the perfect place to find Good Reviews about all the Gadgets <br>
+            <a class="btn btn-primary w-100" href="#meetus"> Meet US</a>
+        </div>     
+</div>
+
+
+<div id="meetus">
+
+        <div class="d-flex bg-info w-100 h-50 mt-5">
+            <div>
+            <img src="{% static 'images/bala_uday_kiran.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+            <h2 class="text-warning" style="padding-left:125px;">Uday</h2>
+            </div>
+            <div class="content border-left border-warning container m-auto h4 text-light">
+            Getting elements to center align vertically has always been a challenge in CSS,
+                let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                which are simpler that vertical center in Bootstrap 3.
+            </div>
+        </div>
+
+
+
+            <div class="d-flex bg-info w-100 h-50 mt-5">
+                <div class="content border-right border-warning container m-auto h4 text-light">
+                Getting elements to center align vertically has always been a challenge in CSS,
+                    let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                    which are simpler that vertical center in Bootstrap 3.
+                </div>
+                <div>
+                <img src="{% static 'images/hemath.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+                <h2 class="text-warning  mx-5 px-5">Hemanth</h2>
+                </div>
+            </div>
+
+
+            <div class="d-flex bg-info w-100 h-50 mt-5">
+                <div>
+                <img src="{% static 'images/praveen.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+                <h2 class="text-warning  mx-5 px-5">Praveen</h2>
+                </div>
+                <div class="content border-left border-warning container m-auto h4 text-light">
+                Getting elements to center align vertically has always been a challenge in CSS,
+                    let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                    which are simpler that vertical center in Bootstrap 3.
+                </div>
+            </div>
+
+
+
+            <div class="d-flex bg-info w-100 h-50 mt-5">
+                <div class="content border-right border-warning container m-auto h4 text-light">
+                Getting elements to center align vertically has always been a challenge in CSS,
+                    let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                    which are simpler that vertical center in Bootstrap 3.
+                </div>
+                <div>
+                <img src="{% static 'images/dinesh.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+                <h2 class="text-warning  mx-5 px-5">Dinesh</h2>
+                </div>
+            </div>
+
+
+            <div class="d-flex bg-info w-100 h-50 mt-5">
+                <div>
+                <img src="{% static 'images/praneeth.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+                <h2 class="text-warning  mx-5 px-5">Praneeth</h2>
+                </div>
+                <div class="content border-left border-warning container m-auto h4 text-light">
+                Getting elements to center align vertically has always been a challenge in CSS,
+                    let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                    which are simpler that vertical center in Bootstrap 3.
+                </div>
+            </div>
+
+
+
+            <div class="d-flex bg-info w-100 h-50 mt-5">
+                <div class="content border-right border-warning container m-auto h4 text-light">
+                Getting elements to center align vertically has always been a challenge in CSS,
+                    let alone Bootstrap. In this story I’ll examine all the new approaches in Bootstrap 4, 
+                    which are simpler that vertical center in Bootstrap 3.
+                </div>
+                <div>
+                <img src="{% static 'images/ajay.jpg' %}" alt="Img Not Found" class="rounded-circle border border-double-line py-3 px-3 mx-5 my-4" style="height:250px; width:250px;">
+                <h2 class="text-warning" style="padding-left:125px;">Ajay</h2>
+                </div>
+            </div>
+
+
+</div>
+
+
+{% endblock body %}
+
+{% block updisplay %}
+d-none
+{% endblock updisplay %}
+
+{% block js %}
+
+{% endblock js %}
+

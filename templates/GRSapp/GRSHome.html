@@ -1,0 +1,672 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+GRS app Home
+{% endblock title %}
+
+{% block homeactive %}
+active
+{% endblock homeactive %}
+
+{% block csslink %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/showcase.css' %}"> {% endcomment %}
+ <link rel="stylesheet" href="{% static 'css/grshome.css'%}">
+{% endblock csslink %}
+
+{% block body %}
+
+{% comment %} For Mobiles sections {% endcomment %}
+{% if mobiles %}
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Mobiles</span>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='mobiles'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for mob in mobiles %}
+          <li class="f-items mobile">
+                      <div class="simg">
+                        <img src="/media/{{mob.mob_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info"><span class="name"><a href="">{{mob.brandname}}<br>{{mob.modelname|truncatechars:4}}</a></span>
+                        <div><span class="price">price: &#8377;{{mob.price}}</span>
+                        <br/>
+                        <button class="btn btn-primary mb-2"> Compare</button>
+                            
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in mobiles.paginator.page_range %}
+          {% if p == mobiles.number %}
+          <strong class="text-danger">
+          <a href="?page1={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page1={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if mobiles.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page1={{mobiles.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if mobiles.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page1={{mobiles.number|add:-1}}">{{mobiles.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page1={{mobiles.number}}">{{mobiles.number}}</a></li>
+    {% if  mobiles.number|add:1 <= mobiles.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page1={{mobiles.number|add:1}}">{{mobiles.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if mobiles.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page1={{mobiles.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+{% comment %} For Laptops sections {% endcomment %}
+{% if laptops %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Laptops </span>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='laptops'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for lap in laptops %}
+          <li class="f-items laptop">
+                      <div class="simg">
+                        <img src="/media/{{lap.lap_pic}}" alt="Image Not Found" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name"><a href="">{{lap.brandname}}<br>{{lap.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{lap.price}}</span><br>
+                        <button class="btn btn-primary mb-2"> Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in laptops.paginator.page_range %}
+          {% if p == laptops.number %}
+          <strong class="text-danger">
+         <a href="?page2={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page2={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if laptops.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page2={{laptops.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if laptops.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page2={{laptops.number|add:-1}}">{{laptops.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page2={{laptops.number}}">{{laptops.number}}</a></li>
+    {% if  laptops.number|add:1 <= laptops.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page2={{laptops.number|add:1}}">{{laptops.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if laptops.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page2={{laptops.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+{% comment %} For HeadSets sections {% endcomment %}
+{% if headsets %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular HeadSet </span>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='headsets'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for hset in headsets %}
+          <li class="f-items headset">
+                      <div class="simg">
+                        <img src="/media/{{hset.hset_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{hset.brandname}}<br>{{hset.modelname|truncatechars:6}}</a></span>
+                        <div><span class="price">price: &#8377;{{hset.price}}</span>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in headsets.paginator.page_range %}
+          {% if p == headsets.number %}
+          <strong class="text-danger">
+         <a href="?page3={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page3={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if headsets.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page3={{headsets.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if headsets.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page3={{headsets.number|add:-1}}">{{headsets.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page3={{headsets.number}}">{{headsets.number}}</a></li>
+    {% if  headsets.number|add:1 <= headsets.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page3={{headsets.number|add:1}}">{{headsets.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if headsets.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page3={{headsets.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+{% comment %} For Cameras section {% endcomment %}
+{% if cameras %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Cameras </span>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='cameras'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for cam in cameras %}
+          <li class="f-items camera">
+                      <div class="simg">
+                        <img src="/media/{{cam.cam_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{cam.brandname}}<br>{{cam.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{cam.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in cameras.paginator.page_range %}
+          {% if p == cameras.number %}
+          <strong class="text-danger">
+         <a href="?page4={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page4={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if cameras.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page4={{cameras.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if cameras.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page4={{cameras.number|add:-1}}">{{cameras.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page4={{cameras.number}}">{{cameras.number}}</a></li>
+    {% if  cameras.number|add:1 <= cameras.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page4={{cameras.number|add:1}}">{{cameras.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if cameras.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page4={{cameras.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+{% comment %} For Powerbanks section {% endcomment %}
+{% if powerbanks %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Powerbanks </span>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='powerbanks'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for pbank in powerbanks %}
+          <li class="f-items powerbank">
+                      <div class="simg">
+                        <img src="/media/{{pbank.pbank_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{pbank.brandname}}<br>{{pbank.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{pbank.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in powerbanks.paginator.page_range %}
+          {% if p == powerbanks.number %}
+          <strong class="text-danger">
+         <a href="?page5={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page5={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if powerbanks.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page5={{powerbanks.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if powerbanks.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page5={{powerbanks.number|add:-1}}">{{powerbanks.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page5={{powerbanks.number}}">{{powerbanks.number}}</a></li>
+    {% if  powerbanks.number|add:1 <= powerbanks.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page5={{powerbanks.number|add:1}}">{{powerbanks.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if powerbanks.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page5={{powerbanks.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+{% comment %} For Refrigerators section {% endcomment %}
+{% if fridges %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Refrigerators </span>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='fridges'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for fridge in fridges %}
+          <li class="f-items fridge">
+                      <div class="simg">
+                        <img src="/media/{{fridge.refrig_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{fridge.brandname}}<br>{{fridge.modelname|truncatechars:6}}</a></span>
+                        <div><span class="price">price : &#8377;{{fridge.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in fridges.paginator.page_range %}
+          {% if p == fridges.number %}
+          <strong class="text-danger">
+         <a href="?page6={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page6={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if fridges.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page6={{fridges.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if fridges.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page6={{fridges.number|add:-1}}">{{fridges.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page6={{fridges.number}}">{{fridges.number}}</a></li>
+    {% if  fridges.number|add:1 <= fridges.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page6={{fridges.number|add:1}}">{{fridges.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if fridges.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page6={{fridges.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+{% comment %} For Kettles section {% endcomment %}
+{% if kettles %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Kettles </span>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='kettles'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for kettle in kettles %}
+          <li class="f-items kettle">
+                      <div class="simg">
+                        <img src="/media/{{kettle.kettle_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{kettle.brandname}}<br>{{kettle.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{kettle.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in kettles.paginator.page_range %}
+          {% if p == kettles.number %}
+          <strong class="text-danger">
+         <a href="?page7={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page7={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if kettles.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page7={{kettles.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if kettles.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page7={{kettles.number|add:-1}}">{{kettles.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page7={{kettles.number}}">{{kettles.number}}</a></li>
+    {% if  kettles.number|add:1 <= kettles.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page7={{kettles.number|add:1}}">{{kettles.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if kettles.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page7={{kettles.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+{% comment %} For Televisions section {% endcomment %}
+{% if tvs %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Televisions </span>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='kettles'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for tv in tvs %}
+          <li class="f-items television">
+                      <div class="simg">
+                        <img src="/media/{{tv.tv_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{tv.brandname}}<br>{{tv.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{tv.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in tvs.paginator.page_range %}
+          {% if p == tvs.number %}
+          <strong class="text-danger">
+         <a href="?page8={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page8={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if tvs.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page8={{tvs.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if tvs.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page8={{tvs.number|add:-1}}">{{tvs.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page8={{tvs.number}}">{{tvs.number}}</a></li>
+    {% if  tvs.number|add:1 <= tvs.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page8={{tvs.number|add:1}}">{{tvs.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if tvs.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page8={{tvs.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+{% comment %} For WashingMachines section {% endcomment %}
+{% if wms %}
+<hr> 
+<div class="content-section undefined related related-products">
+    <div class="section-header p-2">
+    <span class="ml-4 h4 gadgets"> Popular Washing Machines </span>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='wms'">See More</button>
+		</div>
+        <ul class="row-content">
+        {% for wm in wms %}
+          <li class="f-items washmachine">
+                      <div class="simg">
+                        <img src="/media/{{wm.wm_pic}}" alt="" class="img"></a>
+                      </div>
+
+                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{wm.brandname}}<br>{{wm.modelname}}</a></span>
+                        <div><span class="price">price : &#8377;{{wm.price}}</span>
+                        <br>
+                        <button class="btn btn-primary mb-2">Compare</button>
+                        </div>
+                      </div>
+          </li>
+        {% endfor %}
+        </ul>
+</div>
+
+<div class="container text-center my-2">
+          {% for p in wms.paginator.page_range %}
+          {% if p == wms.number %}
+          <strong class="text-danger">
+         <a href="?page9={{p}}">{{p}}</a>
+          </strong>
+          {% else %}
+          <a href="?page9={{p}}">{{p}}</a>
+          {% endif %}
+          {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example" class='align-items-center'>
+  <ul class="pagination justify-content-center">
+  {% if wms.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page9={{wms.number|add:-1}}" tabindex="-1">Previous</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Previous</a>
+    </li>
+  {% endif %}
+
+    {% if wms.number|add:-1 >= 1  %}
+    <li class="page-item"><a class="page-link" href="?page9={{wms.number|add:-1}}">{{wms.number|add:-1}}</a></li>
+    {% endif %}
+    <li class="page-item"><a class="page-link" href="?page9={{wms.number}}">{{wms.number}}</a></li>
+    {% if  wms.number|add:1 <= wms.num_pages %}
+    <li class="page-item"><a class="page-link" href="?page9={{wms.number|add:1}}">{{wms.number|add:1}}</a></li>
+    {% endif %}
+
+    {% if wms.has_next %}
+    <li class="page-item ">
+      <a class="page-link" href="?page9={{wms.number|add:1}}" tabindex="-1">Next</a>
+    </li>
+  {% else %}
+   <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1">Next</a>
+    </li>
+  {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+
+{% endblock body %}
+
+

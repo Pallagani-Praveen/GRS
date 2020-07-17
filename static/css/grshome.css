@@ -1,0 +1,133 @@
+.gadgets{
+    color:tomato;
+}
+
+.section-header{
+    border:2px solid  #3e45dd;
+    max-width: 1250px;
+    margin :10px auto;
+    border-radius: 10px;
+    background-color: #3e45dd;
+}
+
+.section-header button{
+    background-color: #ccc;
+    color:#3e45dd;
+}
+
+.section-header button:hover{
+    background-color: #fff;
+}
+
+.row-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+}
+
+ul.row-content li{
+    list-style: none;
+    flex:0 0 100px;
+    position: relative;
+    border:2px solid tomato;
+    text-align: center;
+    padding: 20px;
+    background-color: #ccc;
+    min-height: 250px;
+    margin: auto 8px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+
+/* moblie component size */
+li.mobile img{
+    height: 280px;
+}
+li.mobile{
+   height:450px;
+}
+
+
+/* laptop component size */
+li.laptop img{
+    height:150px;
+}
+
+li.laptop{
+    height:300px;
+}
+
+
+/* headset component size */
+
+li.headset img{
+    height:180px;
+    max-width: 180px;
+}
+li.headset{
+    height:340px;
+    width:250px;
+}
+
+/* camera component size */
+li.camera img{
+    height: 150px;
+    width:240px;
+}
+
+li.camera{
+    height:300px;
+    width: auto;
+}
+
+
+/* poowerbank component size */
+li.powerbank img{
+    height:200px;
+    width: 150px;
+}
+li.powerbank{
+ height:380px;
+}
+
+/* fridge component size */
+li.fridge img{
+    height:230px;
+    width:140px;
+}
+li.fridge{
+    height: 380px;
+}
+
+
+/* kettle component size */
+li.kettle img{
+    
+}
+
+li.kettle{
+    
+}
+
+
+/* television component size */
+li.television img{
+    height:160px;
+    width:220px;
+}
+li.television{
+    height: 310px;
+}
+
+/* washmachine component size */
+li.washmachine img{
+   height:180px; 
+   width:180px;
+}
+
+li.washmachine{
+    height: 330px;
+}
+

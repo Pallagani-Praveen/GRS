@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+GRS Home
+{% endblock title %}
+
+{% block css %}
+ 
+ 
+ #first-pic{
+   
+    background-image:url('{% static 'images/banner1.jpg' %}');
+   
+    background-repeat:no-repeat;
+    background-size:cover;
+    height:95vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    background-attachment:fixed;
+    
+       
+} 
+
+ #second-pic{
+    background-image:url('{% static 'images/banner22.jpg' %}');
+    background-repeat:no-repeat;
+    background-size:cover;
+    height:95vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    background-attachment:fixed;  
+} 
+
+ #third-pic{
+    background-image:url('{% static 'images/banner33.jpg' %}');
+    background-repeat:no-repeat;
+    background-size:cover;
+    height:95vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    background-attachment:fixed;
+    
+} 
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  
+}
+
+.carousel-indicators .active{
+    background-color:red;
+}
+
+
+
+.card{
+    max-height:350px;
+}
+
+.row .card{
+    flex-basis: 30%;
+}
+
+{% endblock css %}
+
+{% block body %}
+
+
+    <div id="homecarousel" class="carousel slide" data-ride="carousel" data-interval="4000">
+
+        <ol class="carousel-indicators py-4">
+            <li data-target="#homecarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#homecarousel" data-slide-to="1" ></li>
+            <li data-target="#homecarousel" data-slide-to="2" ></li>
+        </ol>
+
+        <div class="carousel-inner">
+        
+
+            <div class="carousel-item active " >
+                    
+                        <div  id="first-pic" >
+                            <h1 class="display-4 text-center text-warning font-weight-bold" style=";opacity:1">GRS</h1>
+                            <p class="lead text-center text-light">Find the reviews of all latest gadgets</p>
+                            <a class="btn btn-outline-danger btn-lg text-light" href="#categories">Explore</a>
+                        </div>
+                  
+            </div>
+
+            <div class="carousel-item">
+                    
+                        <div id="second-pic">
+                            <h1 class="display-4 text-center text-danger font-weight-bold">Review on Latest Deals</h1>
+                            <p class="lead text-center text-light">View , Compare and Decide</p>
+                             <a class="btn btn-outline-danger btn-lg text-light" href="#footer">See Info</a>
+                        </div>
+                   
+            </div>
+           
+            <div class="carousel-item">
+                    
+                            <div id="third-pic" >
+                                <h1 class="display-4 text-center text-warning font-weight-bold">Find the One</h1>
+                                <p class="lead text-center text-light">Explore to decide the best one</p>
+                                 <a class="btn btn-outline-danger btn-lg text-light" href="#menu">Menu</a>
+                            </div>
+                    
+            </div>
+        </div>
+    </div>
+
+    
+
+    
+     
+
+<div class="container" id="categories">
+
+    <h3 class="lead font-weight-bold text-warning" style="font-size:25px;">Categories</h3>
+        <div class="row">
+            {% for item in items %}
+            <div class="card border border-success mb-5 mx-3 " style="width: 18rem;">
+            
+            <div class="card-body" style="background-image:url('/media/{{item.itempic}}');background-size:cover;">
+                <h5 class="card-title text-warning ">{{item.itemname}}</h5>
+                <p class="card-text text-white">{{item.itemdesc|truncatechars:"50"}}</p>
+                <a href="/GRSapp/showitems/{{item.itemname}}" class="btn btn-primary m-auto">See More</a>
+            </div>
+            </div> 
+            
+            {% endfor %}
+            
+        </div>
+
+    </div>
+
+
+
+
+{% endblock body %}
+
+{% block js %}
+$(function(){
+        introJs().start();
+    }); 
+{% endblock js %}

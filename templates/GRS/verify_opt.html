@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+verify OTP
+{% endblock title %}
+
+{% block css %}
+
+{% endblock css %}
+
+{% block body %}
+
+<div class="container bg-default border rounded">
+
+<div class="inner d-flex">
+<form action="/signup" method="POST" class="m-auto">
+    {% csrf_token %}
+    <input type="text" name="fname" value="{{fname}}" hidden>
+    <input type="text" name="lname" value="{{lname}}" hidden>
+    <input type="text" name="gender" value="{{gender}}" hidden>
+    <input type="text" name="email" value="{{email}}" hidden>
+    <input type="text" name="dob" value="{{dob}}" hidden>
+    <input type="text" name="passwd" value="{{passwd}}" hidden>
+    <input type="text" name="genOTP" value="{{genOTP}}" hidden>
+    <input type="file" name="user_pic" value="{{user_pic}}" hidden>
+    <small class="my-2 lead text-light">OTP send to {{email}}</small><br>
+    <hr class="bg-light">
+    <small class="lead my-1 font-weight-bold text-light" for="otp">OTP Here &nbsp;:&nbsp;&nbsp;</small>
+    <input type="text" name="OTP" class="form-control mb-2" place="Enter OTP....." class="my-1" required>
+    <div class="g-recaptcha" data-sitekey="6LeKRd4UAAAAAGG8dVFKRTUhZOrVRyuHENvpaobR" required></div>
+    <small class="text-danger">Reload the page to resend the OTP</small><br>
+    <input type="submit" value="Submit" class="btn btn-primary my-2">
+</form>
+</div>
+</div>
+
+{% endblock body %}

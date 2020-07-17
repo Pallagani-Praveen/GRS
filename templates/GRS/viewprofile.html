@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+small{
+    color:blue;
+}
+
+
+{% endblock css %}
+
+
+{% block title %}
+Profile Page
+{% endblock title %}
+
+{% block body %}
+<div class="container border border-success my-5 col-md-6 py-4 px-5 overflow-auto">
+<form action="/updateprofile" method="POST" onsubmit="return validateupdateform()" name="updateform">
+{% csrf_token %}
+<div class="row">
+<h3 class="my-2 col text-primary lead font-weight-bold">Hi, {{userobj.username}}</h3>
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" name="edit" id="customSwitch1" onchange="editprofile(this)">
+  <label class="custom-control-label text-warning"  for="customSwitch1">Edit Profile</label>
+</div>
+</div>
+<hr>
+<div class="row my-1">
+    <div class="col">
+        <small>Frist Name</small><br>
+        <input type="text" name="fname" class="form-control" value="{{userobj.firstname}}" required>
+        <small id="first_error" class="text-danger">This will change UserID also</small>
+    </div>
+    <div class="col">
+        <small>Last Name</small><br>
+        <input type="text" name="lname" class="form-control" value="{{userobj.lastname}}" required>
+        <small id="last_error" class="text-danger"></small>
+    </div>
+</div>
+<div class="row my-1">
+    <div class="col">
+        <small>E-Mail</small><br>
+        <input type="email" name="email" class="form-control" value="{{userobj.email}}" required>
+        <small class="email_error text-danger" ></small>
+    </div>
+    <div class="col">
+        <small>Gender</small><br>
+        <input type="text" name="gender" class="form-control" value="{{userobj.gender}}">
+    </div>
+</div>
+<div class="row my-1">
+    <div class="col">
+        <small>DOB</small><br>
+        <input type="text" name="dob" class="form-control" value="{{userobj.dob}}">
+        
+    </div>
+    <div class="col">
+        <small>Password</small><br>
+        <input type="password" name="passwd" class="form-control" value="{{userobj.password}}" required>
+        <small  class="text-danger passwd_error"></small>
+    </div>
+</div>
+<hr>
+<button type="submit" class="btn btn-info float-right" id="update-btn">Update</button>
+</form>
+</div>
+{% endblock body %}
+
+
+{% block js %}
+$(function(){
+    makereadonly();
+    $('#update-btn').css('display','none');
+});
+
+function editprofile(checkbox){
+    if(checkbox.checked==true){
+        editable();
+        $('#update-btn').css('display','block');
+
+    }
+    else{
+        makereadonly();
+        $('#update-btn').css('display','none');
+
+    }
+}
+
+function makereadonly(){
+   
+    $('input[name="fname"]').val('{{userobj.firstname}}');
+    $('input[name="lname"]').val('{{userobj.lastname}}');
+    $('input[name="email"]').val('{{userobj.email}}');
+    $('input[name="passwd"]').val('{{userobj.password}}');
+
+
+    $('input[name="fname"]').attr('readonly','readonly');
+    $('input[name="lname"]').attr('readonly','readonly');
+    $('input[name="email"]').attr('readonly','readonly');
+    $('input[name="gender"]').attr('readonly','readonly');
+    $('input[name="dob"]').attr('readonly','readonly');
+    $('input[name="passwd"]').attr('readonly','readonly');
+    $('#first_error').hide();
+    $('#last_error').hide();
+    $('.email_error').hide();
+    $('.passwd_error').hide();
+
+}
+
+function editable(){
+    $('input[name="fname"]').removeAttr('readonly');
+    $('input[name="lname"]').removeAttr('readonly');
+    $('input[name="email"]').removeAttr('readonly');
+    $('input[name="passwd"]').removeAttr('readonly');
+     $('#first_error').show();
+     
+}
+
+function validateupdateform(){
+    var fname = document.forms["updateform"]["fname"].value;
+    var lname = document.forms["updateform"]["lname"].value;
+    var email = document.forms["updateform"]["email"].value;
+    var passwd = document.forms["updateform"]["passwd"].value;
+    $('#last_error').hide();
+    $('.email_error').hide();
+    $('.passwd_error').hide();
+
+    if(fname.length<4){
+        $('#first_error').html('FirstName should be atleast 4 charecters');
+        return false;
+    } else if(lname.length<4) {
+        $('#last_error').show();
+        $('#last_error').html('LastName should be atleast 4 charecters');
+        return false;
+    } else if(email.slice(email.length-3).trim()!=="com") {
+        $('.email_error').show();
+        $('.email_error').html('Invalid Email ID');
+        return false;
+    }
+     else if(passwd.length<8) {
+         $('.passwd_error').show();
+        $('.passwd_error').html('Password should contain atleast 8 charecters');
+        return false;
+    }
+}
+
+{% endblock js %}

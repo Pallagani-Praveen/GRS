@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search Page
+{% endblock title %}
+
+{% block body %}
+
+<div class="container">
+{% if count %}
+<h2 class="text-success">Search Results : {{count}} Results Found</h2>
+<small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+{% for mob in mob_srh %}
+   <div class="card my-2" id="card{{mob.id}}">
+        <div class="card-header text-primary">
+        {{mob.brandname}}&nbsp;,&nbsp;{{mob.modelname}}
+         <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{mob.id}})"></i>
+        </div>
+      
+       
+        <div class="card-body">
+            <h5 class="card-title">Battery : {{mob.battery_cap}} MAH<br>Memory : {{mob.internal_mem}} GB</h5>
+            <h5 class="card-title">RAM : {{mob.ram}} MAH<br>Price : {{mob.price}} GB</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">see reviews</a>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+        <div class="med card-section">
+        <h2 class="text-danger">Search Results:</h2>
+        <p aria-level="3" role="heading" style="padding-top:.33em">
+        Your search Query : <b>{{query|truncatechars:50}}</b>  did not match any documents.</p>
+        <p style="margin-top:1em">Suggestions:</p>
+        <ul style="margin-left:1.3em;margin-bottom:2em">
+        <li>Try different keywords.</li>
+        <li>Try more general keywords.</li>
+        <li>Try fewerkeywords.</li>
+        </ul>
+        </div>
+{% endif %}
+</div>
+{% endblock body %}
+
+
+
+{% block js %}
+function removeSearch(id){
+    $('#card'+id).addClass('d-none');
+}
+{% endblock js %}

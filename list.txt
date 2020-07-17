@@ -1,0 +1,22 @@
+mobiles
+tvs
+washing machines
+watches
+laptops
+cameras
+head phones
+fridge
+micro-oven
+AC
+projector
+printers
+mixers
+grinders
+juicers
+guisers
+purifiers --> ro
+rice cooker
+induction stoves
+toosters
+cattle
+vaccum cleaner
