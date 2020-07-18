@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
-from GRSapp.models import UsersModal,ContactModel,itemslist,Mobiles
+from GRSapp.models import UsersModal,ContactModel,itemslist,Mobiles,Laptops,HeadSet,Camera,Powerbank,Kettle,WashingMachine,Refrigerator,Television
 from django.contrib import messages
 from GRS.randkey import randnum,genOTP
 from datetime import datetime
@@ -217,17 +217,173 @@ def search(request):
         user = UsersModal.objects.get(username=user)
     if request.method=="POST":
         search_val = request.POST['search']
-        mob_srh = Mobiles.objects.none()
-        now = datetime.now()
-        mob_bn = Mobiles.objects.filter(brandname__icontains=search_val)
-        mob_mn = Mobiles.objects.filter(modelname__icontains=search_val)
-        later = datetime.now()
-        sr_tm = (later-now).total_seconds()
-        mob_srh = mob_bn.union(mob_mn)
-        params = {'mob_srh':mob_srh,'count':mob_srh.count(),'user':user,"time":sr_tm,'query':search_val}
-        if mob_srh.count() == 0:
+        item = request.POST['item']
+
+        if item == 'mobile':
+            mob_bn = Mobiles.objects.none()
+            mob_mn = Mobiles.objects.none()
+            
+            now = datetime.now()
+            mob_bn = Mobiles.objects.filter(brandname__icontains=search_val)
+            mob_mn = Mobiles.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = mob_bn.count()+mob_mn.count()
+            params = {"user":user,'mob_bn':mob_bn,'mob_mn':mob_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Mobile Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+
+        elif item == 'laptop':
+            lap_bn = Laptops.objects.none()
+            lap_mn = Laptops.objects.none()
+            
+            now = datetime.now()
+            lap_bn = Laptops.objects.filter(brandname__icontains=search_val)
+            lap_mn = Laptops.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = lap_bn.count()+lap_mn.count()
+            params = {"user":user,'lap_bn':lap_bn,'lap_mn':lap_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Laptop Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'headset':
+            hs_bn = HeadSet.objects.none()
+            hs_mn = HeadSet.objects.none()
+            
+            now = datetime.now()
+            hs_bn = HeadSet.objects.filter(brandname__icontains=search_val)
+            hs_mn = HeadSet.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = hs_bn.count()+hs_mn.count()
+            params = {"user":user,'hs_bn':hs_bn,'hs_mn':hs_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No HeadSet Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+
+        elif item == 'camera':
+            cam_bn = Camera.objects.none()
+            cam_mn = Camera.objects.none()
+            
+            now = datetime.now()
+            cam_bn = Camera.objects.filter(brandname__icontains=search_val)
+            cam_mn = Camera.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = cam_bn.count()+cam_mn.count()
+            params = {"user":user,'cam_bn':cam_bn,'cam_mn':cam_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Camera Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'powerbank':
+            pb_bn = Powerbank.objects.none()
+            pb_mn = Powerbank.objects.none()
+            
+            now = datetime.now()
+            pb_bn = Powerbank.objects.filter(brandname__icontains=search_val)
+            pb_mn = Powerbank.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = pb_bn.count()+pb_mn.count()
+            params = {"user":user,'pb_bn':pb_bn,'pb_mn':pb_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No PowerBank Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'kettle':
+            kt_bn = Kettle.objects.none()
+            kt_mn = Kettle.objects.none()
+            
+            now = datetime.now()
+            kt_bn = Kettle.objects.filter(brandname__icontains=search_val)
+            kt_mn = Kettle.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = kt_bn.count()+kt_mn.count()
+            params = {"user":user,'kt_bn':kt_bn,'kt_mn':kt_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Kettle Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'washmachine':
+            wm_bn = WashingMachine.objects.none()
+            wm_mn = WashingMachine.objects.none()
+            
+            now = datetime.now()
+            wm_bn = WashingMachine.objects.filter(brandname__icontains=search_val)
+            wm_mn = WashingMachine.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = wm_bn.count()+wm_mn.count()
+            params = {"user":user,'wm_bn':wm_bn,'wm_mn':wm_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No WashingMachine Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'fridge':
+            fg_bn = Refrigerator.objects.none()
+            fg_mn = Refrigerator.objects.none()
+            
+            now = datetime.now()
+            fg_bn = Refrigerator.objects.filter(brandname__icontains=search_val)
+            fg_mn = Refrigerator.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = fg_bn.count()+fg_mn.count()
+            params = {"user":user,'fg_bn':fg_bn,'fg_mn':fg_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Refridgrator Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+        
+        elif item == 'television':
+            tv_bn = Television.objects.none()
+            tv_mn = Television.objects.none()
+            
+            now = datetime.now()
+            tv_bn = Television.objects.filter(brandname__icontains=search_val)
+            tv_mn = Television.objects.filter(modelname__icontains=search_val)
+            later = datetime.now()
+
+            sr_tm = (later-now).total_seconds()
+            count = tv_bn.count()+tv_mn.count()
+            params = {"user":user,'tv_bn':tv_bn,'tv_mn':tv_mn,'count':count,"time":sr_tm,'query':search_val,"item":item}
+            if count == 0:
+                messages.warning(request,'No Television Results Found')
+                return render(request,'GRS/search.html',params)
+            else:
+                return render(request,'GRS/search.html',params)
+
+        else:
+            params = {"user":user,"query":search_val}
             messages.warning(request,'No search Results Found')
             return render(request,'GRS/search.html',params)
-        return render(request,'GRS/search.html',params)
     else:
         return redirect("/")

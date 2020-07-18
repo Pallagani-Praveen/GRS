@@ -77,6 +77,12 @@
         height:25px;
         width:25px;
     }
+
+    #item{
+        width:120px;
+        padding:2px;
+        text-align:center;
+    }
     
 
     {% block css %}
@@ -224,11 +230,35 @@
                     <a class="nav-link text-warning font-weight-bold" href="/about" data-step="5" data-intro="Tells you about the info of development team" data-position="bottom">About</a>
                 </li>
                 </ul>
+
                 <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
-                {% csrf_token %}
-                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search" required>
-                <button class="btn btn-primary my-2 mr-4 my-sm-0" type="submit"><i class="fa fa-search">&nbsp;&nbsp;</i>Search</button>
+                    {% csrf_token %}
+                    <input class="form-control mr-1" type="search" name="search" placeholder="Search" aria-label="Search" required>
+                    
+                    {% comment %} <div class="dropdown"> {% endcomment %}
+
+                        {% comment %} <button class="btn btn-primary text-light mr-2 dropdown-toggle" id="dropdownlist" data-toggle="dropdown">
+                            <i class="fa fa-object-ungroup" aria-hidden="true"></i>
+                        </button> {% endcomment %}
+
+                        <select name="item" role="button" id="item" class="rounded mr-1">
+                            <option  class='dropdown-item' value="mobile">mobile</option>
+                            <option  class='dropdown-item' value="laptop">laptop</option>
+                            <option  class='dropdown-item' value="headset">headset</option>
+                            <option  class='dropdown-item' value="camera">camera</option>
+                            <option  class='dropdown-item' value="powerbank">powerbank</option>
+                            <option  class='dropdown-item' value="kettle">kettle</option>
+                            <option  class='dropdown-item' value="washmachine">washing machine</option>
+                            <option  class='dropdown-item' value="fridge">refridgerator</option>
+                            <option  class='dropdown-item' value="television">television</option>
+                        </select>
+
+                    {% comment %} </div> {% endcomment %}
+
+                    <button class="btn btn-primary my-2 mr-1 my-sm-0 " type="submit" ><i class="fa fa-search">&nbsp;&nbsp;</i>Search</button>
+                            
                 </form>
+
                 {% if user == None %}
                 <button class="btn btn-outline-warning text-light mx-1 py-1" data-toggle="modal" data-target="#loginModal"><span class="lead font-weight-bold">Login</span>&nbsp;&nbsp;<i class="fa fa-sign-in" style="font-size:25px;" aria-hidden="true"></i></button>
                 <button class="btn btn-outline-warning text-light      py-1" data-toggle="modal" data-target="#signupmodal"><span class="lead font-weight-bold">SignUp</span>&nbsp;&nbsp;<i class="fa fa-user-plus" style="font-size:25px;color:white"></i></button>

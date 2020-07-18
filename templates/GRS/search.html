@@ -1,34 +1,482 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Search Page
+{{item|upper}} results
 {% endblock title %}
+
+{% block css %}
+.wm-image img{
+    height:200px;
+    padding-right:20px;
+}
+.fg-image img{
+    height:250px;
+    padding-right:20px;
+}
+.tv-image img{
+    padding-right:20px;
+}
+
+.pb-image img{
+    padding-right:20px;
+    height:200px;
+}
+
+.cam-image img{
+    padding-right:20px;
+    height:180px;
+}
+
+.hs-image img{
+    padding-right:20px;
+    height:200px;
+}
+
+.lap-image img{
+    padding-right:20px;
+    height:160px;
+}
+
+.mob-image img{
+    padding-right:20px;
+    height:200px;
+}
+{% endblock css %}
 
 {% block body %}
 
 <div class="container">
-{% if count %}
-<h2 class="text-success">Search Results : {{count}} Results Found</h2>
+
+{% if count and item == 'mobile' %}
+<h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
 <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
-{% for mob in mob_srh %}
+{% for mob in mob_bn %}
    <div class="card my-2" id="card{{mob.id}}">
         <div class="card-header text-primary">
-        {{mob.brandname}}&nbsp;,&nbsp;{{mob.modelname}}
+        {{mob.brandname}}&nbsp;,&nbsp;{{mob.modelname}} : by brand
          <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{mob.id}})"></i>
         </div>
-      
-       
-        <div class="card-body">
-            <h5 class="card-title">Battery : {{mob.battery_cap}} MAH<br>Memory : {{mob.internal_mem}} GB</h5>
-            <h5 class="card-title">RAM : {{mob.ram}} MAH<br>Price : {{mob.price}} GB</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">see reviews</a>
+
+        <div class="card-body d-flex justify-content-between">
+            <div class="card-information">
+                <h5 class="card-title">Battery : {{mob.battery_cap}} MAH<br>Memory : {{mob.internal_mem}} GB</h5>
+                <h5 class="card-title">RAM : {{mob.ram}} MAH<br>Price : {{mob.price}} GB</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">see reviews</a>
+            </div>
+            <div class="mob-image">
+                <img src="/media/{{mob.mob_pic}}"/>
+            </div>
         </div>
     </div>
 {% endfor %}
+{% for mob in mob_mn %}
+   <div class="card my-2" id="card{{mob.id}}">
+        <div class="card-header text-primary">
+        {{mob.brandname}}&nbsp;,&nbsp;{{mob.modelname}} : by model
+         <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{mob.id}})"></i>
+        </div>
+      
+        <div class="card-body d-flex justify-content-between">
+            <div class="card-information">
+                <h5 class="card-title">Battery : {{mob.battery_cap}} MAH<br>Memory : {{mob.internal_mem}} GB</h5>
+                <h5 class="card-title">RAM : {{mob.ram}} MAH<br>Price : {{mob.price}} GB</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">see reviews</a>
+            </div>
+            <div class="mob-image">
+                <img src="/media/{{mob.mob_pic}}"/>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+{% elif count and item == 'laptop' %}  
+
+        <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for lap in lap_bn %}
+        <div class="card my-2" id="card{{lap.id}}">
+                <div class="card-header text-primary">
+                {{lap.brandname}}&nbsp;,&nbsp;{{lap.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{lap.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Battery : {{lap.battery_cap}} MAH<br>Memory : {{lap.internal_mem}} </h5>
+                        <h5 class="card-title">RAM : {{lap.ram}} GB<br>Price : {{lap.price}} /-</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="lap-image">
+                        <img src="/media/{{lap.lap_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% for lap in lap_mn %}
+        <div class="card my-2" id="card{{lap.id}}">
+                <div class="card-header text-primary">
+                {{lap.brandname}}&nbsp;,&nbsp;{{lap.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{lap.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Battery : {{lap.battery_cap}} MAH<br>Memory : {{lap.internal_mem}} </h5>
+                        <h5 class="card-title">RAM : {{lap.ram}} GB<br>Price : {{lap.price}} /-</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="lap-image">
+                        <img src="/media/{{lap.lap_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+{% elif count and item == 'headset' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for hs in hs_bn %}
+        <div class="card my-2" id="card{{hs.id}}">
+                <div class="card-header text-primary">
+                {{hs.brandname}}&nbsp;,&nbsp;{{hs.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{hs.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Is_Wireless : {{hs.is_wireless}} <br>Microphone : {{hs.is_microphone_avbl}}</h5>
+                        <h5 class="card-title">Built Material : {{hs.built_matrl}} GB<br>Price : {{hs.price}} /-</h5>
+                        <p class="card-text">{{hs.spec}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="hs-image">
+                        <img src="/media/{{hs.hset_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for hs in hs_mn %}
+        <div class="card my-2" id="card{{hs.id}}">
+                <div class="card-header text-primary">
+                {{hs.brandname}}&nbsp;,&nbsp;{{hs.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{hs.id}})"></i>
+                </div>
+            
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Is_Wireless : {{hs.is_wireless}} <br>Microphone : {{hs.is_microphone_avbl}}</h5>
+                        <h5 class="card-title">Built Material : {{hs.built_matrl}} GB<br>Price : {{hs.price}} /-</h5>
+                        <p class="card-text">{{hs.spec}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="hs-image">
+                        <img src="/media/{{hs.hset_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+{% elif count and item == 'camera' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for cam in cam_bn %}
+        <div class="card my-2" id="card{{cam.id}}">
+                <div class="card-header text-primary">
+                {{cam.brandname}}&nbsp;,&nbsp;{{cam.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{cam.id}})"></i>
+                </div>
+            
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">MegaPixel : {{cam.megapixel}} Pixels<br>Battery : {{cam.battery_cap}}</h5>
+                        <h5 class="card-title">IsAutoFocus : {{cam.is_autofocus}} <br>Price : {{cam.price}} /-</h5>
+                        <p class="card-text">Is Raw Mode : {{cam.is_raw_mode}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="cam-image">
+                        <img src="/media/{{cam.cam_pic}}" class="img">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for cam in cam_mn %}
+        <div class="card my-2" id="card{{cam.id}}">
+                <div class="card-header text-primary">
+                {{cam.brandname}}&nbsp;,&nbsp;{{cam.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{cam.id}})"></i>
+                </div>
+            
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">MegaPixel : {{cam.megapixel}} Pixels<br>Battery : {{cam.battery_cap}}</h5>
+                        <h5 class="card-title">IsAutoFocus : {{cam.is_autofocus}} <br>Price : {{cam.price}} /-</h5>
+                        <p class="card-text">Is Raw Mode : {{cam.is_raw_mode}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="cam-image">
+                        <img src="/media/{{cam.cam_pic}}" class="img">
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+{% elif count and item == 'powerbank' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for pb in pb_bn %}
+        <div class="card my-2" id="card{{pb.id}}">
+                <div class="card-header text-primary">
+                {{pb.brandname}}&nbsp;,&nbsp;{{pb.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{pb.id}})"></i>
+                </div>
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Is type C available : {{pb.is_C_port}} <br>Outputs : {{pb.no_outputs}} </h5>
+                        <h5 class="card-title">Is type USB available : {{pb.is_USB_port}} <br>Price : {{pb.price}} /-</h5>
+                        <p class="card-text">Is type B available : {{pb.is_B_port}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="pb-image">
+                        <img src="/media/{{pb.pbank_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for pb in pb_mn %}
+        <div class="card my-2" id="card{{pb.id}}">
+                <div class="card-header text-primary">
+                {{pb.brandname}}&nbsp;,&nbsp;{{pb.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{pb.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Is type C available : {{pb.is_C_port}} <br>Outputs : {{pb.no_outputs}} </h5>
+                        <h5 class="card-title">Is type USB available : {{pb.is_USB_port}} <br>Price : {{pb.price}} /-</h5>
+                        <p class="card-text">Is type B available : {{pb.is_B_port}}</p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="pb-image">
+                        <img src="/media/{{pb.pbank_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+{% elif count and item == 'kettle' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for kt in kt_bn %}
+        <div class="card my-2" id="card{{kt.id}}">
+                <div class="card-header text-primary">
+                {{kt.brandname}}&nbsp;,&nbsp;{{kt.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{kt.id}})"></i>
+                </div>
+            
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Operating Volts : {{kt.optr_volt}} volts<br> Max Temperature : {{kt.max_temp}} degrees</h5>
+                        <h5 class="card-title">Is Auto Managable : {{kt.is_auto_manage}} <br>Price : {{kt.price}} /-</h5>
+                        <p class="card-text">Body Material : {{kt.body_matrl}}<br>Spec's : {{kt.spec}} </p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="kt-image">
+                        <img src="/media/{{kt.kettle_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% for kt in kt_mn %}
+        <div class="card my-2" id="card{{kt.id}}">
+                <div class="card-header text-primary">
+                {{kt.brandname}}&nbsp;,&nbsp;{{kt.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{kt.id}})"></i>
+                </div>
+            
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                        <h5 class="card-title">Operating Volts : {{kt.optr_volt}} volts<br> Max Temperature : {{kt.max_temp}} degrees</h5>
+                        <h5 class="card-title">Is Auto Managable : {{kt.is_auto_manage}} <br>Price : {{kt.price}} /-</h5>
+                        <p class="card-text">Body Material : {{kt.body_matrl}}<br>Spec's : {{kt.spec}} </p>
+                        <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="kt-image">
+                        <img src="/media/{{kt.kettle_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+{% elif count and item == 'washmachine' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for wm in wm_bn %}
+        <div class="card my-2" id="card{{wm.id}}">
+                <div class="card-header text-primary">
+                {{wm.brandname}}&nbsp;,&nbsp;{{wm.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{wm.id}})"></i>
+                </div>
+            
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Capacity in ltrs : {{wm.ltr_cap}} lts<br> Drum Direction : {{wm.drum_dir}} way</h5>
+                    <h5 class="card-title">Color : {{wm.colour}} <br>Price : {{wm.price}} /-</h5>
+                    <p class="card-text">Auto Dry : {{wm.is_auto_dry}}<br>Auto Manage : {{wm.is_smart_wm}} </p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="wm-image">
+                        <img src="/media/{{wm.wm_pic}}" class="img"/>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        {% for wm in wm_mn %}
+        <div class="card my-2" id="card{{wm.id}}">
+                <div class="card-header text-primary">
+                {{wm.brandname}}&nbsp;,&nbsp;{{wm.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{wm.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Capacity in ltrs : {{wm.ltr_cap}} lts<br> Drum Direction : {{wm.drum_dir}} way</h5>
+                    <h5 class="card-title">Color : {{wm.colour}} <br>Price : {{wm.price}} /-</h5>
+                    <p class="card-text">Auto Dry : {{wm.is_auto_dry}}<br>Auto Manage : {{wm.is_smart_wm}} </p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="wm-image">
+                        <img src="/media/{{wm.wm_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+
+{% elif count and item == 'fridge' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for fg in fg_bn %}
+        <div class="card my-2" id="card{{fg.id}}">
+                <div class="card-header text-primary">
+                {{fg.brandname}}&nbsp;,&nbsp;{{fg.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{fg.id}})"></i>
+                </div>
+            
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Capacity in ltrs : {{fg.Capacity}} lts<br> Is Double Door : {{fg.double_door}} </h5>
+                    <h5 class="card-title">Color : {{fg.colour}} <br>Price : {{fg.price}} /-</h5>
+                    <p class="card-text">Warranty : {{fg.Warranty}} yrs</p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="fg-image">
+                        <img src="/media/{{fg.refrig_pic}}" class="img"/>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        {% for fg in fg_mn %}
+        <div class="card my-2" id="card{{fg.id}}">
+                <div class="card-header text-primary">
+                {{fg.brandname}}&nbsp;,&nbsp;{{fg.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{fg.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Capacity in ltrs : {{fg.Capacity}} lts<br> Is Double Door : {{fg.double_door}} way</h5>
+                    <h5 class="card-title">Color : {{fg.colour}} <br>Price : {{fg.price}} /-</h5>
+                    <p class="card-text">Warranty : {{fg.Warranty}} trs</p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="fg-image">
+                        <img src="/media/{{fg.refrig_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+{% elif count and item == 'television' %}
+
+    <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
+        <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
+        {% for tv in tv_bn %}
+        <div class="card my-2" id="card{{tv.id}}">
+                <div class="card-header text-primary">
+                {{tv.brandname}}&nbsp;,&nbsp;{{tv.modelname}} : by brand
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{tv.id}})"></i>
+                </div>
+            
+            
+               <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Display Diagonal : {{tv.disp_len}} inches<br> Is Smart Tv : {{tv.is_smart_tv}} </h5>
+                    <h5 class="card-title">Color : {{tv.color}} <br>Price : {{tv.price}} /-</h5>
+                    <p class="card-text">Spec's : {{tv.spec}}</p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="tv-image">
+                        <img src="/media/{{tv.tv_pic}}" class="img"/>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+
+        {% for tv in tv_mn %}
+        <div class="card my-2" id="card{{tv.id}}">
+                <div class="card-header text-primary">
+                {{tv.brandname}}&nbsp;,&nbsp;{{tv.modelname}} : by model
+                <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{tv.id}})"></i>
+                </div>
+            
+                <div class="card-body d-flex justify-content-between">
+                    <div class="card-information">
+                    <h5 class="card-title">Display Diagonal : {{tv.disp_len}} inches<br> Is Smart Tv : {{tv.is_smart_tv}} </h5>
+                    <h5 class="card-title">Color : {{tv.color}} <br>Price : {{tv.price}} /-</h5>
+                    <p class="card-text">Spec's : {{tv.spec}}</p>
+                    <a href="#" class="btn btn-primary">see reviews</a>
+                    </div>
+                    <div class="tv-image">
+                        <img src="/media/{{tv.tv_pic}}" class="img"/>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
 {% else %}
         <div class="med card-section">
-        <h2 class="text-danger">Search Results:</h2>
+        <h2 class="text-danger">{{item}} Results:</h2>
         <p aria-level="3" role="heading" style="padding-top:.33em">
         Your search Query : <b>{{query|truncatechars:50}}</b>  did not match any documents.</p>
         <p style="margin-top:1em">Suggestions:</p>
