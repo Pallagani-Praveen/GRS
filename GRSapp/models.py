@@ -176,7 +176,7 @@ class WashingMachine(models.Model):
     brandname = models.CharField(max_length=50)
     modelname = models.CharField(max_length=50)
     price = models.IntegerField()
-    wm_pic = models.ImageField(upload_to="Television",default="Image Not Found")
+    wm_pic = models.ImageField(upload_to="WashingMachine",default="Image Not Found")
     ltr_cap = models.IntegerField()
     direction = (
         ('vertical','Vertical'),
