@@ -71,7 +71,9 @@ def loadmobiles(request):
     user = request.COOKIES.get('username')
     mobiles = Mobiles.objects.all()
     mobiles = make_ratings(mobiles)
+    
     params = {"user":user,"mobiles":mobiles}
+    
     return render(request,'GRSapp/loadMobiles.html',params)
         
     

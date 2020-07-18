@@ -6,13 +6,13 @@ def randnum():
 
 def make_ratings(mobiles):
     for mobile in mobiles:
-            point = mobile.rating - floor(mobile.rating)
-            if point >= 0.5:
-                mobile.rating = ceil(mobile.rating)
-            else:
-                mobile.rating = floor(mobile.rating)
-
-            mobile.rating = [x for x in range(floor(mobile.rating))]
+        strg = ''
+        num = 5 - mobile.rating
+        for i in range(mobile.rating):
+            strg+='1'
+        for i in range(num):
+            strg+='0'
+        mobile.rating = strg
     return mobiles
 
 def genOTP():

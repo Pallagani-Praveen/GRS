@@ -1,4 +1,5 @@
 from django.db import models
+import random
 
 
 class ContactModel(models.Model):
@@ -43,8 +44,8 @@ class Mobiles(models.Model):
     ram = models.IntegerField()
     mob_pic = models.ImageField(upload_to="Mobiles",default="Image Not Found")
     price = models.IntegerField()
-    rating = models.FloatField(default=0.0)
-    hearts = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)
+    hearts = models.IntegerField(default=random.randint(18,25))
 
     class Meta:
         ordering = ['-id']
