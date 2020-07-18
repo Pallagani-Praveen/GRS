@@ -104,11 +104,12 @@ li.fridge{
 
 /* kettle component size */
 li.kettle img{
-    
+    height:180px;
+    width:180px;
 }
 
 li.kettle{
-    
+    height:340px;
 }
 
 

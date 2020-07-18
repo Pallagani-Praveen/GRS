@@ -39,7 +39,7 @@ def GRSappHome(request):
     fridges = paginator6.get_page(page6)
 
     kettles = Kettle.objects.all()
-    paginator7 = Paginator(kettles,8)
+    paginator7 = Paginator(kettles,4)
     page7 = request.GET.get('page7')
     kettles = paginator7.get_page(page7)
 

@@ -10,7 +10,6 @@ active
 {% endblock homeactive %}
 
 {% block csslink %}
-{% comment %} <link rel="stylesheet" href="{% static 'css/showcase.css' %}"> {% endcomment %}
  <link rel="stylesheet" href="{% static 'css/grshome.css'%}">
 {% endblock csslink %}
 
@@ -458,9 +457,9 @@ active
 		</div>
         <ul class="row-content">
         {% for kettle in kettles %}
-          <li class="f-items kettle">
+          <li class="f-items kettle"  id="{{forloop.counter}}">
                       <div class="simg">
-                        <img src="/media/{{kettle.kettle_pic}}" alt="" class="img"></a>
+                        <img  src="/media/{{kettle.kettle_pic}}" alt="" class="img" />
                       </div>
 
                       <div class="info text-wrap"><span class="name pb-1"><a href="">{{kettle.brandname}}<br>{{kettle.modelname}}</a></span>
