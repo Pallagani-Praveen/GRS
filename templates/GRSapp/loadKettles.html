@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+KETTLES PAGE
+{% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/loadMobiles.css' %}"/>
+{% endblock csslink %}
+
+
+{% block body %}
+    {% if kettles %}
+        {% for kettle in kettles %}
+            <div class="mobile-viewer mt-1 mb-1 container">
+                <button class="btn btn-secondary btn-lg btn-block text-left d-flex justify-content-between" data-toggle="collapse" data-target="#kettle{{forloop.counter}}">
+                {{kettle}}
+                <div class="rating d-flex">
+                    <div class="stars">
+                        {% for i in kettle.rating %}
+                            {% ifnotequal  i  '0' %}
+                            <span class="fa fa-star checked"></span>
+                            {% else %}
+                            <span class="fa fa-star"></span>
+                            {% endifnotequal %}
+                        {% endfor %}
+                    </div>
+                    <div class="hearts pl-3 ">
+                       <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{{kettle.hearts}}&nbsp;
+                    </div>
+                </div>
+                </button>
+                <div class="collapse" id="kettle{{forloop.counter}}">
+                    <div class="card card-body">
+                       <ul class="list-group">
+                            <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{kettle.brandname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{kettle.modelname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Max Temperature : </span> <span class="text-warning">{{kettle.max_temp}} degrees</span></li>
+                            <li class="list-group-item"><span class="text-success">Body Material : </span> <span class="text-warning">{{kettle.body_matrl}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Volts : </span> <span class="text-warning">{{kettle.optr_volt}} volts</span></li>
+                            <li class="list-group-item"><span class="text-success">Spec's : </span> <span class="text-warning">{{kettle.spec}} </span></li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div class="item-price">
+                                    <span class="text-success">
+                                        Price :
+                                    </span>
+                                    <span class="text-warning">
+                                    {{kettle.price}} /-
+                                    </span>
+                                </div>
+                                <div class="link-mobileview">
+                                    <button class="btn btn-primary" onclick="location.href='kettles/{{kettle.id}}'">View</button>
+                                </div>
+                            </li>
+                       </ul>
+                       <div class="kettle-image text-center p-2" >
+                            <img src="/media/{{kettle.kettle_pic}}" class="img" style="height:200px;"/>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}

@@ -29,10 +29,10 @@ active
                         <img src="/media/{{mob.mob_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info"><span class="name"><a href="">{{mob.brandname}}<br>{{mob.modelname|truncatechars:4}}</a></span>
+                      <div class="info mt-1"><span class="name text-primary">{{mob.brandname}}<br>{{mob.modelname|truncatechars:4}}</span>
                         <div><span class="price">price: &#8377;{{mob.price}}</span>
                         <br/>
-                        <button class="btn btn-primary mb-2"> Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='mobiles/{{mob.id}}'"> Compare</button>
                             
                         </div>
                       </div>
@@ -102,9 +102,9 @@ active
                         <img src="/media/{{lap.lap_pic}}" alt="Image Not Found" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name"><a href="">{{lap.brandname}}<br>{{lap.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name text-primary">{{lap.brandname}}<br>{{lap.modelname}}</span>
                         <div><span class="price">price : &#8377;{{lap.price}}</span><br>
-                        <button class="btn btn-primary mb-2"> Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='laptops/{{lap.id}}'"> Compare</button>
                         </div>
                       </div>
           </li>
@@ -164,7 +164,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular HeadSet </span>
-    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='headsets'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='headset'">See More</button>
 		</div>
         <ul class="row-content">
         {% for hset in headsets %}
@@ -173,9 +173,9 @@ active
                         <img src="/media/{{hset.hset_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{hset.brandname}}<br>{{hset.modelname|truncatechars:6}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{hset.brandname}}<br>{{hset.modelname|truncatechars:6}}</span>
                         <div><span class="price">price: &#8377;{{hset.price}}</span>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='headsets/{{hset.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -235,7 +235,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Cameras </span>
-    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='cameras'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='camera'">See More</button>
 		</div>
         <ul class="row-content">
         {% for cam in cameras %}
@@ -244,10 +244,10 @@ active
                         <img src="/media/{{cam.cam_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{cam.brandname}}<br>{{cam.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{cam.brandname}}<br>{{cam.modelname}}</span>
                         <div><span class="price">price : &#8377;{{cam.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='cameras/{{cam.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -307,7 +307,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Powerbanks </span>
-    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='powerbanks'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='powerbank'">See More</button>
 		</div>
         <ul class="row-content">
         {% for pbank in powerbanks %}
@@ -316,10 +316,10 @@ active
                         <img src="/media/{{pbank.pbank_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{pbank.brandname}}<br>{{pbank.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{pbank.brandname}}<br>{{pbank.modelname}}</span>
                         <div><span class="price">price : &#8377;{{pbank.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='powerbanks/{{pbank.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -380,7 +380,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Refrigerators </span>
-    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='fridges'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='refrigerator'">See More</button>
 		</div>
         <ul class="row-content">
         {% for fridge in fridges %}
@@ -389,10 +389,10 @@ active
                         <img src="/media/{{fridge.refrig_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{fridge.brandname}}<br>{{fridge.modelname|truncatechars:6}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{fridge.brandname}}<br>{{fridge.modelname|truncatechars:6}}</span>
                         <div><span class="price">price : &#8377;{{fridge.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='fridges/{{fridge.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -453,7 +453,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Kettles </span>
-    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='kettles'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded " onclick="location.href='kettle'">See More</button>
 		</div>
         <ul class="row-content">
         {% for kettle in kettles %}
@@ -462,10 +462,10 @@ active
                         <img  src="/media/{{kettle.kettle_pic}}" alt="" class="img" />
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{kettle.brandname}}<br>{{kettle.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{kettle.brandname}}<br>{{kettle.modelname}}</span>
                         <div><span class="price">price : &#8377;{{kettle.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='kettles/{{kettle.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -526,19 +526,20 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Televisions </span>
-    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='kettles'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='television'">See More</button>
 		</div>
         <ul class="row-content">
         {% for tv in tvs %}
           <li class="f-items television">
                       <div class="simg">
-                        <img src="/media/{{tv.tv_pic}}" alt="" class="img"></a>
+                        <img src="/media/{{tv.tv_pic}}" alt="" class="img">
+                        
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{tv.brandname}}<br>{{tv.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1 text-primary">{{tv.brandname}}<br>{{tv.modelname}}</span>
                         <div><span class="price">price : &#8377;{{tv.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='televisions/{{tv.id}}'">Compare</button>
                         </div>
                       </div>
           </li>
@@ -599,7 +600,7 @@ active
 <div class="content-section undefined related related-products">
     <div class="section-header p-2">
     <span class="ml-4 h4 gadgets"> Popular Washing Machines </span>
-    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='wms'">See More</button>
+    <button class=" float-right mr-2 px-1 rounded" onclick="location.href='washingmachine'">See More</button>
 		</div>
         <ul class="row-content">
         {% for wm in wms %}
@@ -608,10 +609,10 @@ active
                         <img src="/media/{{wm.wm_pic}}" alt="" class="img"></a>
                       </div>
 
-                      <div class="info text-wrap"><span class="name pb-1"><a href="">{{wm.brandname}}<br>{{wm.modelname}}</a></span>
+                      <div class="info text-wrap"><span class="name pb-1  text-primary">{{wm.brandname}}<br>{{wm.modelname}}</span>
                         <div><span class="price">price : &#8377;{{wm.price}}</span>
                         <br>
-                        <button class="btn btn-primary mb-2">Compare</button>
+                        <button class="btn btn-primary mb-2" onclick="location.href='washmachines/{{wm.id}}'">Compare</button>
                         </div>
                       </div>
           </li>

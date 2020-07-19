@@ -6,6 +6,7 @@ from GRS.randkey import randnum,genOTP
 from datetime import datetime
 from django.conf import settings
 from django.core.mail import send_mail
+import requests
 
 import json
 

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+TELEVISIONS PAGE
+{% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/loadMobiles.css' %}"/>
+{% endblock csslink %}
+
+
+{% block body %}
+    {% if televisions %}
+        {% for television in televisions %}
+            <div class="mobile-viewer mt-1 mb-1 container">
+                <button class="btn btn-secondary btn-lg btn-block text-left d-flex justify-content-between" data-toggle="collapse" data-target="#television{{forloop.counter}}">
+                {{television}}
+                <div class="rating d-flex">
+                    <div class="stars">
+                        {% for i in television.rating %}
+                            {% ifnotequal  i  '0' %}
+                            <span class="fa fa-star checked"></span>
+                            {% else %}
+                            <span class="fa fa-star"></span>
+                            {% endifnotequal %}
+                        {% endfor %}
+                    </div>
+                    <div class="hearts pl-3 ">
+                       <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{{television.hearts}}&nbsp;
+                    </div>
+                </div>
+                </button>
+                <div class="collapse" id="television{{forloop.counter}}">
+                    <div class="card card-body">
+                       <ul class="list-group">
+                            <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{television.brandname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{television.modelname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Display Diagonal : </span> <span class="text-warning">{{television.disp_len}} inches</span></li>
+                            <li class="list-group-item"><span class="text-success">Is Smart : </span> <span class="text-warning">{{television.is_smart_tv}} </span></li>
+                            <li class="list-group-item"><span class="text-success">Spec's : </span> <span class="text-warning">{{television.spec}} </span></li>
+                            <li class="list-group-item"><span class="text-success">Colour : </span> <span class="text-warning">{{television.color}} </span></li>
+
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div class="item-price">
+                                    <span class="text-success">
+                                        Price :
+                                    </span>
+                                    <span class="text-warning">
+                                    {{television.price}} /-
+                                    </span>
+                                </div>
+                                <div class="link-mobileview">
+                                    <button class="btn btn-primary" onclick="location.href='televisions/{{television.id}}'">View</button>
+                                </div>
+                            </li>
+                       </ul>
+                       <div class="television-image text-center p-2">
+                            <img src="/media/{{television.tv_pic}}" class="img" style="height:180px;"/>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}

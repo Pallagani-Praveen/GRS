@@ -6,9 +6,10 @@ GRS Home
 
 {% block css %}
 
+
  #first-pic{
 
-    background-image:url('{% static 'images/black-smartphone-besides-earphones-and-camera-lens-2769274.jpg' %}');
+    background-image:url('{% static 'images/new1.jpg' %}');
 
     background-repeat:no-repeat;
     background-size:cover;
@@ -23,7 +24,7 @@ GRS Home
 }
 
  #second-pic{
-    background-image:url('{% static 'images/giu-vicente-FMArg2k3qOU-unsplash (1).jpg' %}');
+    background-image:url('{% static 'images/new3.jpg' %}');
     background-repeat:no-repeat;
     background-size:cover;
     height:95vh;
@@ -35,7 +36,7 @@ GRS Home
 }
 
  #third-pic{
-    background-image:url('{% static 'images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg' %}');
+    background-image:url('{% static 'images/new2.jpg' %}');
     background-repeat:no-repeat;
     background-size:cover;
     height:95vh;
@@ -123,15 +124,19 @@ GRS Home
 
 <div class="container" id="categories">
 
-    <h3 class="lead font-weight-bold text-danger" style="font-size:35px;">Categories</h3>
+    <h3 class="lead font-weight-bold text-secondary" style="font-size:30px;">Categories</h3>
         <div class="row">
             {% for item in items %}
-            <div class="card border border-warning mb-5 mx-3 " style="width: 18rem;">
+            <div class="card border border-success mb-5 mx-3 " style="width: 18rem;">
 
             <div class="card-body" style="background-image:url('/media/{{item.itempic}}');background-size:cover;">
-                <h5 class="card-title text-light ">{{item.itemname}}</h5>
+                <h5 class="card-title text-warning ">{{item.itemname}}</h5>
                 <p class="card-text text-white">{{item.itemdesc|truncatechars:"50"}}</p>
-                <a href="/GRSapp/showitems/{{item.itemname}}" class="btn btn-primary m-auto">See More</a>
+                {% ifnotequal item.itemname  'Washing Machine' %}
+                <a href="/GRSapp/{{item.itemname|lower}}" class="btn btn-primary m-auto">See More</a>
+                {% else %}
+                <a href="/GRSapp/washingmachine" class="btn btn-primary m-auto">See More</a>
+                {% endifnotequal %}
             </div>
             </div>
 

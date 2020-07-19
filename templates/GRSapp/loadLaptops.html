@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+LAPTOPS PAGE
+{% endblock title %}
+
+
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/loadMobiles.css' %}"/>
+{% endblock csslink %}
+
+
+{% block body %}
+    {% if laptops %}
+        {% for laptop in laptops %}
+            <div class="mobile-viewer mt-1 mb-1 container">
+                <button class="btn btn-secondary btn-lg btn-block text-left d-flex justify-content-between" data-toggle="collapse" data-target="#laptop{{forloop.counter}}">
+                {{laptop}}
+                <div class="rating d-flex">
+                    <div class="stars">
+                        {% for i in laptop.rating %}
+                            {% ifnotequal  i  '0' %}
+                            <span class="fa fa-star checked"></span>
+                            {% else %}
+                            <span class="fa fa-star"></span>
+                            {% endifnotequal %}
+                        {% endfor %}
+                    </div>
+                    <div class="hearts pl-3 ">
+                       <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{{laptop.hearts}}&nbsp;
+                    </div>
+                </div>
+                </button>
+                <div class="collapse" id="laptop{{forloop.counter}}">
+                    <div class="card card-body">
+                       <ul class="list-group">
+                            <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{laptop.brandname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{laptop.modelname}}</span></li>
+                            <li class="list-group-item"><span class="text-success">Battery Capacity : </span> <span class="text-warning">{{laptop.battery_cap}} MAH</span></li>
+                            <li class="list-group-item"><span class="text-success">Internal Storage : </span> <span class="text-warning">{{laptop.internal_mem}} GB</span></li>
+                            <li class="list-group-item"><span class="text-success">Ram : </span> <span class="text-warning">{{laptop.ram}} GB</span></li>
+                            <li class="list-group-item"><span class="text-success">Graphic Card : </span> <span class="text-warning">{{laptop.graphics}} </span></li>
+                            <li class="list-group-item"><span class="text-success">Display Size : </span> <span class="text-warning">{{laptop.display}} inches</span></li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <div class="item-price">
+                                    <span class="text-success">
+                                        Price :
+                                    </span>
+                                    <span class="text-warning">
+                                    {{laptop.price}} /-
+                                    </span>
+                                </div>
+                                <div class="link-mobileview">
+                                    <button class="btn btn-primary" onclick="location.href='laptops/{{laptop.id}}'">View</button>
+                                </div>
+                            </li>
+                       </ul>
+                    <div class="mob-image text-center p-2">
+                        <img src="/media/{{laptop.lap_pic}}" class="img"/>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock body %}

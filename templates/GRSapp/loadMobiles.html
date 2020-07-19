@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-{% comment %} {{slug }} Review Page {% endcomment %}
+MOBILES PAGE
 {% endblock title %}
 
 
@@ -31,20 +31,38 @@
                     </div>
                 </div>
                 </button>
-                <div class="collapse" id="mobile{{forloop.counter}}">
+                <div class="collapse  " id="mobile{{forloop.counter}}">
                     <div class="card card-body">
-                       <ul class="list-group">
-                            <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{mobile.brandname}}</span></li>
-                            <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{mobile.modelname}}</span></li>
-                            <li class="list-group-item"><span class="text-success">Battery Capacity : </span> <span class="text-warning">{{mobile.battery_cap}} MAH</span></li>
-                            <li class="list-group-item"><span class="text-success">Internal Storage : </span> <span class="text-warning">{{mobile.internal_mem}} GB</span></li>
-                            <li class="list-group-item"><span class="text-success">Front Camera Pixels : </span> <span class="text-warning">{{mobile.front_cam}} pixels</span></li>
-                            <li class="list-group-item"><span class="text-success">Back Camera Pixels : </span> <span class="text-warning">{{mobile.back_cam}} pixels</span></li>
-                            <li class="list-group-item"><span class="text-success">Display Size : </span> <span class="text-warning">{{mobile.display}} inches</span></li>
-                            <li class="list-group-item"><span class="text-success">RAM : </span> <span class="text-warning">{{mobile.ram}} GB</span></li>
-                            <li class="list-group-item"><span class="text-success">Price : </span> <span class="text-warning">{{mobile.price}} /-</span></li>
-                       </ul>
+                            <ul class="list-items">
+                                    <li class="list-group-item"><span class="text-success">Brand Name : </span> <span class="text-warning">{{mobile.brandname}}</span></li>
+                                    <li class="list-group-item"><span class="text-success">Model Name : </span> <span class="text-warning">{{mobile.modelname}}</span></li>
+                                    <li class="list-group-item"><span class="text-success">Battery Capacity : </span> <span class="text-warning">{{mobile.battery_cap}} MAH</span></li>
+                                    <li class="list-group-item"><span class="text-success">Internal Storage : </span> <span class="text-warning">{{mobile.internal_mem}} GB</span></li>
+                                    <li class="list-group-item"><span class="text-success">Front Camera Pixels : </span> <span class="text-warning">{{mobile.front_cam}} pixels</span></li>
+                                    <li class="list-group-item"><span class="text-success">Back Camera Pixels : </span> <span class="text-warning">{{mobile.back_cam}} pixels</span></li>
+                                    <li class="list-group-item"><span class="text-success">Display Size : </span> <span class="text-warning">{{mobile.display}} inches</span></li>
+                                    <li class="list-group-item"><span class="text-success">RAM : </span> <span class="text-warning">{{mobile.ram}} GB</span></li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div class="item-price">
+                                            <span class="text-success">
+                                                Price :
+                                            </span>
+                                            <span class="text-warning">
+                                            {{mobile.price}} /-
+                                            </span>
+                                        </div>
+                                        <div class="link-mobileview">
+                                            <button class="btn btn-primary" onclick="location.href='mobiles/{{mobile.id}}'">View</button>
+                                        </div>
+                                    </li>
+                            </ul>
+
+                             <div class="mob-image text-center p-2 ">
+                                <img src="/media/{{mobile.mob_pic}}"  alt="Image not Found" class="img"/>
+                            </div>
+
                     </div>
+
                 </div>
             </div>
         {% endfor %}
