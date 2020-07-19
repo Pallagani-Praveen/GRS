@@ -1,5 +1,5 @@
 .gadgets{
-    color:tomato;
+    color:#c8f7eb;
 }
 
 .section-header{
@@ -23,17 +23,17 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
+
 }
 
 ul.row-content li{
     list-style: none;
     flex:0 0 100px;
     position: relative;
-    border:2px solid tomato;
+    border:5px outset #85144b;
     text-align: center;
     padding: 20px;
-    background-color: #ccc;
+    background-color: #DDDDDD;
     min-height: 250px;
     margin: auto 8px;
     border-radius: 10px;
@@ -43,10 +43,10 @@ ul.row-content li{
 
 /* moblie component size */
 li.mobile img{
-    height: 280px;
+    height: 200px;
 }
 li.mobile{
-   height:450px;
+   height:375px;
 }
 
 
@@ -124,11 +124,10 @@ li.television{
 
 /* washmachine component size */
 li.washmachine img{
-   height:180px; 
+   height:180px;
    width:180px;
 }
 
 li.washmachine{
     height: 330px;
 }
-
