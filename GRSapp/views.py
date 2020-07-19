@@ -10,6 +10,8 @@ from django.core.exceptions import MultipleObjectsReturned
 
 def GRSappHome(request):
     user = request.COOKIES.get('username')
+    if UsersModal.objects.filter(username=user):
+        user = UsersModal.objects.get(username=user)
     mobiles = Mobiles.objects.all()
     paginator1 = Paginator(mobiles,6)
     page1 = request.GET.get('page1')
@@ -156,6 +158,8 @@ def loadtelevisions(request):
 
 # display specific component
 def mobileview(request,id):
+    if not Mobiles.objects.filter(id=id):
+        return redirect('/')
     ourmobile = Mobiles.objects.get(id=id)
     ourmobile = make_rating(ourmobile)
     reviews = None
@@ -168,6 +172,8 @@ def mobileview(request,id):
     return render(request,'GRSapp/endViews/mobile.html',params)
 
 def laptopview(request,id):
+    if not Laptops.objects.filter(id=id):
+        return redirect('/')
     ourlaptop = Laptops.objects.get(id=id)
     ourlaptop = make_rating(ourlaptop)
     reviews = None
@@ -180,6 +186,8 @@ def laptopview(request,id):
     return render(request,'GRSapp/endViews/laptop.html',params)
 
 def headsetview(request,id):
+    if not HeadSet.objects.filter(id=id):
+        return redirect('/')
     ourheadset = HeadSet.objects.get(id=id)
     ourheadset = make_rating(ourheadset)
     reviews = None
@@ -193,6 +201,8 @@ def headsetview(request,id):
     
 
 def powerbankview(request,id):
+    if not Powerbank.objects.filter(id=id):
+        return redirect('/')
     ourpowerbank = Powerbank.objects.get(id=id)
     ourpowerbank = make_rating(ourpowerbank)
     reviews = None
@@ -206,6 +216,8 @@ def powerbankview(request,id):
     
 
 def cameraview(request,id):
+    if not Camera.objects.filter(id=id):
+        return redirect('/')
     ourcamera = Camera.objects.get(id=id)
     ourcamera = make_rating(ourcamera)
     reviews = None
@@ -219,6 +231,8 @@ def cameraview(request,id):
     
 
 def fridgeview(request,id):
+    if not Refrigerator.objects.filter(id=id):
+        return redirect('/')
     ourfridge = Refrigerator.objects.get(id=id)
     ourfridge = make_rating(ourfridge)
     reviews = None
@@ -232,6 +246,8 @@ def fridgeview(request,id):
     
 
 def kettleview(request,id):
+    if not Kettle.objects.filter(id=id):
+        return redirect('/')
     ourkettle = Kettle.objects.get(id=id)
     ourkettle = make_rating(ourkettle)
     reviews = None
@@ -245,6 +261,8 @@ def kettleview(request,id):
     
 
 def washmachineview(request,id):
+    if not WashingMachine.objects.filter(id=id):
+        return redirect('/')
     ourwashmachine = WashingMachine.objects.get(id=id)
     ourwashmachine = make_rating(ourwashmachine)
     reviews = None
@@ -258,6 +276,8 @@ def washmachineview(request,id):
     
 
 def televisionview(request,id):
+    if not Television.objects.filter(id=id):
+        return redirect('/')
     ourtelevision = Television.objects.get(id=id)
     ourtelevision = make_rating(ourtelevision)
     reviews = None

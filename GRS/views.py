@@ -388,3 +388,16 @@ def search(request):
             return render(request,'GRS/search.html',params)
     else:
         return redirect("/")
+
+
+def error_page_view_one(request,slug):
+    return render(request,'GRS/url_error.html')
+
+def error_page_view_two(request,slug,id):
+    return render(request,'GRS/url_error.html')
+
+def error_page_view_three(request,slug1,slug2,id):
+    return render(request,'GRS/url_error.html')
+
+def error_page_view_four(request,slug1,slug2,slug3):
+    return render(request,'GRS/url_error.html')

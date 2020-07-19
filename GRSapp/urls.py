@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from GRS import views as  grsview
 urlpatterns = [
     
     path('',views.GRSappHome,name = 'GRSappHome'),
@@ -32,5 +33,6 @@ urlpatterns = [
     path('makecamcom',views.makecamcom,name="makecamcom"),
     path('makepbkcom',views.makepbkcom,name="makepbkcom"),
     path('maketelcom',views.maketelcom,name="maketelcom"),
-    path('makewhncom',views.makewhncom,name="makewhncom")
+    path('makewhncom',views.makewhncom,name="makewhncom"),
+    
 ]
