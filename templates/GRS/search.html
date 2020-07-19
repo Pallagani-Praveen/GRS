@@ -15,6 +15,8 @@
 }
 .tv-image img{
     padding-right:20px;
+    height:200px
+    
 }
 
 .pb-image img{
@@ -76,7 +78,7 @@
         {{mob.brandname}}&nbsp;,&nbsp;{{mob.modelname}} : by model
          <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{mob.id}})"></i>
         </div>
-      
+
         <div class="card-body d-flex justify-content-between">
             <div class="card-information">
                 <h5 class="card-title">Battery : {{mob.battery_cap}} MAH<br>Memory : {{mob.internal_mem}} GB</h5>
@@ -91,7 +93,7 @@
     </div>
 {% endfor %}
 
-{% elif count and item == 'laptop' %}  
+{% elif count and item == 'laptop' %}
 
         <h2 class="text-light mt-3">{{item}} Results : {{count}} Results Found for "{{query}}"</h2>
         <small class="text-secondary">About {{count}} results ({{time}} seconds)</small>
@@ -101,7 +103,7 @@
                 {{lap.brandname}}&nbsp;,&nbsp;{{lap.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{lap.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Battery : {{lap.battery_cap}} MAH<br>Memory : {{lap.internal_mem}} </h5>
@@ -121,7 +123,7 @@
                 {{lap.brandname}}&nbsp;,&nbsp;{{lap.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{lap.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Battery : {{lap.battery_cap}} MAH<br>Memory : {{lap.internal_mem}} </h5>
@@ -146,7 +148,7 @@
                 {{hs.brandname}}&nbsp;,&nbsp;{{hs.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{hs.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Is_Wireless : {{hs.is_wireless}} <br>Microphone : {{hs.is_microphone_avbl}}</h5>
@@ -167,8 +169,8 @@
                 {{hs.brandname}}&nbsp;,&nbsp;{{hs.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{hs.id}})"></i>
                 </div>
-            
-            
+
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Is_Wireless : {{hs.is_wireless}} <br>Microphone : {{hs.is_microphone_avbl}}</h5>
@@ -193,8 +195,8 @@
                 {{cam.brandname}}&nbsp;,&nbsp;{{cam.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{cam.id}})"></i>
                 </div>
-            
-            
+
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">MegaPixel : {{cam.megapixel}} Pixels<br>Battery : {{cam.battery_cap}}</h5>
@@ -215,8 +217,8 @@
                 {{cam.brandname}}&nbsp;,&nbsp;{{cam.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{cam.id}})"></i>
                 </div>
-            
-            
+
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">MegaPixel : {{cam.megapixel}} Pixels<br>Battery : {{cam.battery_cap}}</h5>
@@ -242,7 +244,7 @@
                 {{pb.brandname}}&nbsp;,&nbsp;{{pb.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{pb.id}})"></i>
                 </div>
-            
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Is type C available : {{pb.is_C_port}} <br>Outputs : {{pb.no_outputs}} </h5>
@@ -263,7 +265,7 @@
                 {{pb.brandname}}&nbsp;,&nbsp;{{pb.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{pb.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Is type C available : {{pb.is_C_port}} <br>Outputs : {{pb.no_outputs}} </h5>
@@ -289,8 +291,8 @@
                 {{kt.brandname}}&nbsp;,&nbsp;{{kt.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{kt.id}})"></i>
                 </div>
-            
-            
+
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Operating Volts : {{kt.optr_volt}} volts<br> Max Temperature : {{kt.max_temp}} degrees</h5>
@@ -311,8 +313,8 @@
                 {{kt.brandname}}&nbsp;,&nbsp;{{kt.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{kt.id}})"></i>
                 </div>
-            
-            
+
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                         <h5 class="card-title">Operating Volts : {{kt.optr_volt}} volts<br> Max Temperature : {{kt.max_temp}} degrees</h5>
@@ -337,8 +339,8 @@
                 {{wm.brandname}}&nbsp;,&nbsp;{{wm.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{wm.id}})"></i>
                 </div>
-            
-            
+
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Capacity in ltrs : {{wm.ltr_cap}} lts<br> Drum Direction : {{wm.drum_dir}} way</h5>
@@ -360,7 +362,7 @@
                 {{wm.brandname}}&nbsp;,&nbsp;{{wm.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{wm.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Capacity in ltrs : {{wm.ltr_cap}} lts<br> Drum Direction : {{wm.drum_dir}} way</h5>
@@ -387,8 +389,8 @@
                 {{fg.brandname}}&nbsp;,&nbsp;{{fg.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{fg.id}})"></i>
                 </div>
-            
-            
+
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Capacity in ltrs : {{fg.Capacity}} lts<br> Is Double Door : {{fg.double_door}} </h5>
@@ -410,7 +412,7 @@
                 {{fg.brandname}}&nbsp;,&nbsp;{{fg.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{fg.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Capacity in ltrs : {{fg.Capacity}} lts<br> Is Double Door : {{fg.double_door}} way</h5>
@@ -435,8 +437,8 @@
                 {{tv.brandname}}&nbsp;,&nbsp;{{tv.modelname}} : by brand
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{tv.id}})"></i>
                 </div>
-            
-            
+
+
                <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Display Diagonal : {{tv.disp_len}} inches<br> Is Smart Tv : {{tv.is_smart_tv}} </h5>
@@ -458,7 +460,7 @@
                 {{tv.brandname}}&nbsp;,&nbsp;{{tv.modelname}} : by model
                 <i class="fa fa-trash-o float-right" style="font-size:24px" onclick="removeSearch({{tv.id}})"></i>
                 </div>
-            
+
                 <div class="card-body d-flex justify-content-between">
                     <div class="card-information">
                     <h5 class="card-title">Display Diagonal : {{tv.disp_len}} inches<br> Is Smart Tv : {{tv.is_smart_tv}} </h5>

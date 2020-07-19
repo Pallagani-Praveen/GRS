@@ -9,7 +9,7 @@ GRS Home
 
  #first-pic{
 
-    background-image:url('{% static 'images/banner1.jpg' %}');
+    background-image:url('{% static 'images/black-smartphone-besides-earphones-and-camera-lens-2769274.jpg' %}');
 
     background-repeat:no-repeat;
     background-size:cover;
@@ -24,7 +24,7 @@ GRS Home
 }
 
  #second-pic{
-    background-image:url('{% static 'images/banner22.jpg' %}');
+    background-image:url('{% static 'images/giu-vicente-FMArg2k3qOU-unsplash (1).jpg' %}');
     background-repeat:no-repeat;
     background-size:cover;
     height:95vh;
@@ -36,7 +36,7 @@ GRS Home
 }
 
  #third-pic{
-    background-image:url('{% static 'images/banner33.jpg' %}');
+    background-image:url('{% static 'images/ales-nesetril-Im7lZjxeLhg-unsplash.jpg' %}');
     background-repeat:no-repeat;
     background-size:cover;
     height:95vh;
@@ -98,7 +98,7 @@ GRS Home
             <div class="carousel-item">
 
                         <div id="second-pic">
-                            <h1 class="display-4 text-center text-danger font-weight-bold">Review on Latest Deals</h1>
+                            <h1 class="display-4 text-center text-warning font-weight-bold">Review on Latest Deals</h1>
                             <p class="lead text-center text-light">View , Compare and Decide</p>
                              <a class="btn btn-outline-danger btn-lg text-light" href="#footer">See Info</a>
                         </div>
@@ -124,13 +124,13 @@ GRS Home
 
 <div class="container" id="categories">
 
-    <h3 class="lead font-weight-bold text-warning" style="font-size:25px;">Categories</h3>
+    <h3 class="lead font-weight-bold text-secondary" style="font-size:25px;">Categories</h3>
         <div class="row">
             {% for item in items %}
             <div class="card border border-success mb-5 mx-3 " style="width: 18rem;">
 
             <div class="card-body" style="background-image:url('/media/{{item.itempic}}');background-size:cover;">
-                <h5 class="card-title text-danger ">{{item.itemname}}</h5>
+                <h5 class="card-title text-warning ">{{item.itemname}}</h5>
                 <p class="card-text text-white">{{item.itemdesc|truncatechars:"50"}}</p>
                 <a href="/GRSapp/showitems/{{item.itemname}}" class="btn btn-primary m-auto">See More</a>
             </div>

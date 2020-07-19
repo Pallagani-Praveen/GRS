@@ -14,7 +14,7 @@
     {% if mobiles %}
         {% for mobile in mobiles %}
             <div class="mobile-viewer mt-1 mb-1 container">
-                <button class="btn btn-primary btn-lg btn-block text-left d-flex justify-content-between" data-toggle="collapse" data-target="#mobile{{forloop.counter}}">
+                <button class="btn btn-secondary btn-lg btn-block text-left d-flex justify-content-between" data-toggle="collapse" data-target="#mobile{{forloop.counter}}">
                 {{mobile}}
                 <div class="rating d-flex">
                     <div class="stars">
@@ -50,8 +50,3 @@
         {% endfor %}
     {% endif %}
 {% endblock body %}
-
-
-
-
-
