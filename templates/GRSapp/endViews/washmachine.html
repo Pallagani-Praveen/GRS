@@ -49,6 +49,7 @@
         list-style-type:none;
         padding:10px;  
     }
+
     .comment-div{
         background:#fff;
     }
@@ -90,6 +91,7 @@
         font-size:18px;
        
     }
+
  {% endblock css %}
 
  {% block csslink %}
@@ -154,6 +156,7 @@
         </div>
     </div>
 
+
     <div class="comment-div p-4 m-3">
         <h6>Comment Section</h6>
         <ul id="com-ul">
@@ -189,12 +192,15 @@
         {% endif %}
 
     </div>
+
  {% endblock body%}
 
 
  {% block jslink %}
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
  <script type="text/javascript" src="{% static 'js/washmachine_comment.js' %}"></script>
+
  {% endblock jslink %}
 
  {% block js %}
@@ -205,11 +211,13 @@
         function drawChart() {
         var data = google.visualization.arrayToDataTable([
         ['Task', 'user count '],
+
         ['1 star', Math.floor(Math.random()*(23)+15)],
         ['2 star', Math.floor(Math.random()*(23)+15)],
         ['3 star', Math.floor(Math.random()*(23)+15)],
         ['4 star', Math.floor(Math.random()*(23)+15)],
         ['5 star', Math.floor(Math.random()*(23)+15)]
+
         ]);
 
         // Optional; add a title and set the width and height of the chart
