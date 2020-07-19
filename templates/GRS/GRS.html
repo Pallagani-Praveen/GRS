@@ -132,7 +132,11 @@ GRS Home
             <div class="card-body" style="background-image:url('/media/{{item.itempic}}');background-size:cover;">
                 <h5 class="card-title text-warning ">{{item.itemname}}</h5>
                 <p class="card-text text-white">{{item.itemdesc|truncatechars:"50"}}</p>
-                <a href="/GRSapp/showitems/{{item.itemname}}" class="btn btn-primary m-auto">See More</a>
+                {% ifnotequal item.itemname  'Washing Machine' %}
+                <a href="/GRSapp/{{item.itemname|lower}}" class="btn btn-primary m-auto">See More</a>
+                {% else %}
+                <a href="/GRSapp/washingmachine" class="btn btn-primary m-auto">See More</a>
+                {% endifnotequal %}
             </div>
             </div> 
             

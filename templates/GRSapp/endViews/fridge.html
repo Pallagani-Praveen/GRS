@@ -1,0 +1,147 @@
+ {% extends 'base.html' %}
+{% load static %}
+ {% block title %}
+    {{ourfridge.brandname|upper}} VIEW
+ {% endblock title %}
+
+ {% block css %}
+    #item-div{
+        background-color:#fff;
+        box-sizing:border-box;
+        flex-grow:2;
+    }
+    .item-image{
+        flex-grow:1;
+        border:2px solid #ccc;
+        margin:5px;
+        
+    }
+    .item-info{
+        padding:10px;
+        border:2px solid #ccc;
+        flex-grow:2;
+        margin:5px;
+        
+    }
+    .item-desc{
+        flex-grow:2;
+        flex-wrap:wrap;
+    }
+    
+    .small-desc{
+        
+        margin-top:5px;
+        border-radius:10px;
+        color:tomato;
+    }
+    
+    #piechart{
+        flex-grow:1;
+        border:2px solid #ccc;
+        margin:5px;
+    }
+
+    .inner-align{
+        margin:auto auto;
+        max-width:300px;
+    }
+    .inner-align li{
+        list-style-type:none;
+        padding:10px;  
+    }
+ {% endblock css %}
+
+ {% block csslink %}
+    <link rel="stylesheet" href="{% static 'css/loadMobiles.css' %}"/>
+{% endblock csslink %}
+
+ {% block body %}
+    <div id="item-div" class="p-4 m-3">
+        <div class="item-desc text-center d-flex justify-content-between">
+            <div class="item-image">
+                <img src="/media/{{ourfridge.refrig_pic}}" class="img mt-2" style="height:200px;"/> <br>
+                <div class="small-desc p-2 d-flex justify-content-center">
+                    <table>
+                    <tr>
+                    <td class="text-primary">BrandName&nbsp;</td>
+                    <td class="text-primary">:&nbsp;</td>
+                    <td> {{ourfridge.brandname}}</td>
+                    </tr>
+
+                    <tr>
+                    <td class="text-primary">ModelName&nbsp;</td>
+                    <td class="text-primary">:&nbsp;</td>
+                    <td>{{ourfridge.modelname}} </td>
+                    </tr>
+
+                    <tr>
+                    <td class="text-primary">Price&nbsp;</td>
+                    <td class="text-primary">:&nbsp;</td>
+                    <td>{{ourfridge.price}} /-</td>
+        
+                    </table>
+                </div>
+            </div>
+            <div class="item-info d-flex">
+                <div class="inner-align">
+                    <h3 class="text-info"><u>{{ourfridge.brandname}}</u></h3>
+                    <li class="text-primary">Colour : <span class="text-danger">{{ourfridge.colour}}</span></li>
+                    <li class="text-primary">Capacity : <span class="text-danger">{{ourfridge.Capacity}} lts</span></li>
+                    <li class="text-primary">Warranty : <span class="text-danger">{{ourfridge.Warranty}} yrs</span></li>
+                    <li class="text-primary">Is Double Door : <span class="text-danger">{{ourfridge.double_door}}</span></li>
+                    <li class="text-primary">Is Smart : <span class="text-danger">{{ourfridge.single_door}}</span></li>
+                    {% comment %} <li class="text-primary">RAM : <span class="text-danger">{{ourmobile.ram}} GB</span></li> {% endcomment %}
+                    <div class="rating d-flex justify-content-center">
+                        <div class="stars">
+                            {% for i in ourfridge.rating %}
+                                {% ifnotequal  i  '0' %}
+                                <span class="fa fa-star checked"></span>
+                                {% else %}
+                                <span class="fa fa-star"></span>
+                                {% endifnotequal %}
+                            {% endfor %}
+                        </div>
+                        <div class="hearts pl-3 ">
+                        <i class="fa fa-heart" aria-hidden="true"></i>&nbsp;{{ourfridge.hearts}}&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rating-pie">
+                 <div id="piechart"></div>
+            </div>
+        </div>
+    </div>
+ {% endblock body%}
+
+
+ {% block jslink %}
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ {% endblock jslink %}
+
+ {% block js %}
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        // Draw the chart and set the chart values
+        function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Task', 'user count '],
+        ['1 star', 6],
+        ['2 star', 4],
+        ['3 star', 2],
+        ['4 star', 3],
+        ['5 star', 5]
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Rating of {{ourfridge}}', 'width':400, 'height':300};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.BarChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+        }
+ {% endblock js%}
+
+
+

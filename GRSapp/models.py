@@ -60,7 +60,7 @@ class Laptops(models.Model):
     internal_mem = models.CharField(max_length=20)
     ram = models.IntegerField()
     price = models.IntegerField()
-    rating = models.FloatField(default=0.0)
+    rating = models.IntegerField(default=0)
     hearts = models.IntegerField(default=0)
     display = models.CharField(max_length=25)
     graphics = models.CharField(max_length=30)
@@ -80,6 +80,8 @@ class HeadSet(models.Model):
     built_matrl = models.CharField(max_length=60)
     spec = models.TextField()
     hset_pic = models.ImageField(upload_to="HeadSet",default="Image Not Found")
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
     def __str__(self):
@@ -95,7 +97,8 @@ class Camera(models.Model):
     battery_cap = models.IntegerField()
     is_autofocus = models.BooleanField()
     is_image_stable = models.BooleanField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
@@ -113,7 +116,8 @@ class Powerbank(models.Model):
     is_C_port = models.BooleanField()
     is_USB_port = models.BooleanField()
     is_B_port = models.BooleanField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
@@ -130,7 +134,8 @@ class Refrigerator(models.Model):
     Warranty = models.IntegerField()
     double_door = models.BooleanField()
     single_door = models.BooleanField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
@@ -148,7 +153,8 @@ class Kettle(models.Model):
     spec = models.TextField(max_length=1000)
     body_matrl = models.CharField(max_length=50)
     optr_volt = models.IntegerField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
@@ -164,7 +170,8 @@ class Television(models.Model):
     disp_len = models.IntegerField()
     spec = models.TextField()
     is_smart_tv = models.BooleanField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
@@ -187,7 +194,8 @@ class WashingMachine(models.Model):
     is_auto_dry = models.BooleanField()
     colour = models.CharField(max_length=15)
     optr_volt = models.IntegerField()
-
+    rating = models.IntegerField(default=random.randint(1,6))
+    hearts = models.IntegerField(default=random.randint(10,35))
     class Meta:
         ordering = ['-id']
 
