@@ -55,13 +55,13 @@ def GRSappHome(request):
     page9 = request.GET.get('page9')
     wms = paginator9.get_page(page9)
 
-    
+
 
     params = {'user':user,'mobiles':mobiles,'laptops':laptops,'headsets':headsets,'cameras':cameras,'powerbanks':powerbanks,'fridges':fridges,'kettles':kettles,'tvs':tvs,'wms':wms}
-        
+
     return render(request,'GRSapp/GRSHome.html',params)
 
-def loaditem(request,slug): 
+def loaditem(request,slug):
     if slug=="Mobiles":
         return redirect('loadmobiles')
     else:
@@ -71,10 +71,7 @@ def loadmobiles(request):
     user = request.COOKIES.get('username')
     mobiles = Mobiles.objects.all()
     mobiles = make_ratings(mobiles)
-    
-    params = {"user":user,"mobiles":mobiles}
-    
-    return render(request,'GRSapp/loadMobiles.html',params)
-        
-    
 
+    params = {"user":user,"mobiles":mobiles}
+
+    return render(request,'GRSapp/loadMobiles.html',params)
