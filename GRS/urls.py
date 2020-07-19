@@ -9,7 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.GRSHome,name="GRSHome"),
     path('contact',views.contact,name="contact"),
-    path('about',views.about,name="about"),
+    path('about/',views.about,name="about"),
     path('search',views.search,name="search"),
     path('otp',views.otp,name="otp"),
     path('signup',views.signup,name = 'signup'),

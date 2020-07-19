@@ -40,7 +40,7 @@
     }
 
     body{   
-       background-image:linear-gradient(to bottom right, #30E8BF, #FF8235);
+       background: linear-gradient(to right, #F9D423, #e65c00);
        background-size:cover;
        font-family: 'Lemonada', cursive; 
     }
@@ -446,28 +446,7 @@
         return true
         
     }
-    {% comment %} $(function(){
-        $(document).on('submit','#signup-modal-form',function(e){
-            e.preventDefault();
-            $.ajax({
-                type:'POST',
-                url:'/signup',
-                data:{
-                    fname:$('input[name="fname"]').val(),
-                    lname:$('input[name="lname"]').val(),
-                    email:$('input[name="email"]').val(),
-                    gender:$('input[name="gender"]:checked').val(),
-                    dob:$('input[type="date"]').val(),
-                    pass1:$('input[name="pass1"]').val(),
-                    pass2:$('input[name="pass2"]').val(),
-                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
-                },
-                success:function(){
-                    alert('Inserted to database');
-                }
-            });
-        });
-    }); {% endcomment %}
+    
     
    
 
