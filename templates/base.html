@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
   {% load static %}
-  
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -39,10 +39,12 @@
         transform:rotate(270deg);
     }
 
-    body{   
-       background-image:linear-gradient(to bottom right, #30E8BF, #FF8235);
-       background-size:cover;
-       font-family: 'Lemonada', cursive; 
+    body{
+      background: #e65c00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ background-size:cover;
+       font-family: 'Lemonada', cursive;
     }
 
     html{
@@ -67,7 +69,7 @@
     nav ul li:hover{
         text-shadow:2px 2px white;
     }
-    
+
     #icon{
         width:35px;
         height:35px;
@@ -83,7 +85,7 @@
         padding:2px;
         text-align:center;
     }
-    
+
 
     {% block css %}
     {% endblock css %}
@@ -92,8 +94,8 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
-  
-     
+
+
 {% comment %} Signup Modal {% endcomment %}
     <form action="/otp" method="POST" id="signup-modal-form" name="signup-modal-form" onsubmit="return validateForm()">
         {% csrf_token %}
@@ -162,10 +164,10 @@
                     <span class="alert alert-warning py-0" id="passwd_alert" role="alert">
                         <p id="passwd_error"></p>
                     </span>
-                    </div>   
-                     
+                    </div>
+
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-danger">Reset</button>
                     <button type="submit" class="btn btn-primary" id="signup-btn">Submit</button>
@@ -207,7 +209,7 @@
             </div>
     </form>
 
-    
+
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark main" id="navbar">
             <a class="navbar-brand" href="#menu"><img id="icon" src="{% static 'icon.jpg' %}" alt="GRS" data-step="1" data-intro="click the icon to see sidebar" data-position="bottom"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -221,8 +223,8 @@
                 </li>
                 <li class="nav-item {% block GRSappactive %} {% endblock GRSappactive%}">
                     <a class="nav-link text-warning font-weight-bold" href="/GRSapp" data-step="3" data-intro="Takes you to the blog page" data-position="bottom">GRSapp</a>
-                </li> 
-                
+                </li>
+
                 <li class="nav-item {% block contactactive %} {% endblock contactactive%}">
                     <a class="nav-link text-warning font-weight-bold" href="/contact" data-step="4" data-intro="Mention your issue in contact form" data-position="bottom">Contact</a>
                 </li>
@@ -234,7 +236,7 @@
                 <form class="form-inline my-2 my-lg-0" action="/search" method="POST">
                     {% csrf_token %}
                     <input class="form-control mr-1" type="search" name="search" placeholder="Search" aria-label="Search" required>
-                    
+
                     {% comment %} <div class="dropdown"> {% endcomment %}
 
                         {% comment %} <button class="btn btn-primary text-light mr-2 dropdown-toggle" id="dropdownlist" data-toggle="dropdown">
@@ -256,13 +258,13 @@
                     {% comment %} </div> {% endcomment %}
 
                     <button class="btn btn-primary my-2 mr-1 my-sm-0 " type="submit" ><i class="fa fa-search">&nbsp;&nbsp;</i>Search</button>
-                            
+
                 </form>
 
                 {% if user == None %}
                 <button class="btn btn-outline-warning text-light mx-1 py-1" data-toggle="modal" data-target="#loginModal"><span class="lead font-weight-bold">Login</span>&nbsp;&nbsp;<i class="fa fa-sign-in" style="font-size:25px;" aria-hidden="true"></i></button>
                 <button class="btn btn-outline-warning text-light      py-1" data-toggle="modal" data-target="#signupmodal"><span class="lead font-weight-bold">SignUp</span>&nbsp;&nbsp;<i class="fa fa-user-plus" style="font-size:25px;color:white"></i></button>
-                {% else %} 
+                {% else %}
                 {% comment %} fa fa-user-circle-o {% endcomment %}
                 <div class="dropdown show">
                     <a class="btn btn-success dropdown-toggle  text-light lead mr-2 ml-2 profile-btn px-2 py-2" style="font-size:22px;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -272,7 +274,7 @@
                         <a class="dropdown-item lead text-success" href="/viewprofile">View Profile</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item lead text-success" href="/logout">Logout</a>
-                        
+
                     </div>
                 </div>
                 {% endif %}
@@ -280,7 +282,7 @@
             </div>
             </nav>
 
-        
+
 
             {% for message in messages %}
                     <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
@@ -291,23 +293,23 @@
                     </div>
            {% endfor %}
 
-          
+
 			<nav id="menu">
             {% if user == None %}
             <span class="text-primary">Login|SignUP</span>
             {% else %}
              <img src="media/{{user.user_pic}}" alt="Image not Found" class="user_pic">&nbsp;{{user.username}}
             {% endif %}
-           
+
             <a href="#menu" class="fa fa-arrow-right float-right" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
 				<ul class="links">
                     {% if user != None %}
 					<li><a href="/viewprofile">Update Profile</a></li>
                     {% endif %}
-                    
+
 					<li><a href="#categories">Categories</a></li>
 					<li><a href="#">Elements</a></li>
-                    
+
                     {% if user != None %}
 					<li><a href="/logout">logout</a></li>
                     <hr>
@@ -315,12 +317,12 @@
 				</ul>
 			</nav>
 
-		
-			
+
+
 
         {% block body %}
         {% endblock body %}
-    
+
     <div class="scrollUp float-right mr-5 {% block updisplay %}{% endblock updisplay %}">
      <button class="border border-dark rounded-circle bg-dark text-light px-3 py-2" id="top-btn"><i class="fa fa-angle-up" style="font-size:36px;color:white"></i></button>
     </div>
@@ -368,33 +370,33 @@
                 </div>
             </div>
     </footer>
-   
-    
-    
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    
+
 	<script src="{% static 'js/skel.min.js' %}"></script>
 	<script src="{% static 'js/util.js' %}"></script>
 	<script src="{% static 'js/sidebar.js' %}"></script>
 	<script src="{% static 'js/intro.js' %}"></script>
-    
+
     {% block jslink %}
     {% endblock jslink %}
 
 
     <script type="text/javascript">
 
-     
-    
+
+
     $(function(){
         $('#fname_alert').css('display','none');
         $('#lname_alert').css('display','none');
         $('#email_alert').css('display','none');
-        $('#passwd_alert').css('display','none');  
+        $('#passwd_alert').css('display','none');
          $('#top-btn').css('display','none');
         $(window).scroll(function(){
           if($(this).scrollTop()>400)
@@ -448,7 +450,7 @@
         }
 
         return true
-        
+
     }
     {% comment %} $(function(){
         $(document).on('submit','#signup-modal-form',function(e){
@@ -472,12 +474,12 @@
             });
         });
     }); {% endcomment %}
-    
-   
+
+
 
     {% block js %}
-    {% endblock js %} 
+    {% endblock js %}
     </script>
-   
+
   </body>
 </html>
