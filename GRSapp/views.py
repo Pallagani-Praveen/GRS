@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.http import HttpResponse
 from .models import UsersModal,Mobiles,Laptops,HeadSet,Camera,Powerbank,Refrigerator,Kettle,Television,WashingMachine
+from .models import mobilereview,laptopreview,kettlereview,headsetreview,fridgereview,camerareview,powerbankreview,televisionreview,washmanchinereview
 from http.cookies import SimpleCookie
 from math import floor,ceil
 from GRS.randkey import make_ratings,make_rating
 from django.core.paginator import Paginator
+from django.core.exceptions import MultipleObjectsReturned
 
 def GRSappHome(request):
     user = request.COOKIES.get('username')
@@ -156,93 +158,229 @@ def loadtelevisions(request):
 def mobileview(request,id):
     ourmobile = Mobiles.objects.get(id=id)
     ourmobile = make_rating(ourmobile)
-    print(ourmobile.rating)
+    reviews = None
+    if mobilereview.objects.filter(mobileid=id):
+        reviews = mobilereview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourmobile":ourmobile,"user":user}
+    params = {"ourmobile":ourmobile,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/mobile.html',params)
 
 def laptopview(request,id):
     ourlaptop = Laptops.objects.get(id=id)
     ourlaptop = make_rating(ourlaptop)
+    reviews = None
+    if laptopreview.objects.filter(laptopid=id):
+        reviews = laptopreview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourlaptop":ourlaptop,"user":user}
+    params = {"ourlaptop":ourlaptop,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/laptop.html',params)
 
 def headsetview(request,id):
     ourheadset = HeadSet.objects.get(id=id)
     ourheadset = make_rating(ourheadset)
+    reviews = None
+    if headsetreview.objects.filter(headsetid=id):
+        reviews = headsetreview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourheadset":ourheadset,"user":user}
+    params = {"ourheadset":ourheadset,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/headset.html',params)
     
 
 def powerbankview(request,id):
     ourpowerbank = Powerbank.objects.get(id=id)
     ourpowerbank = make_rating(ourpowerbank)
+    reviews = None
+    if powerbankreview.objects.filter(powerbankid=id):
+        reviews = powerbankreview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourpowerbank":ourpowerbank,"user":user}
+    params = {"ourpowerbank":ourpowerbank,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/powerbank.html',params)
     
 
 def cameraview(request,id):
     ourcamera = Camera.objects.get(id=id)
     ourcamera = make_rating(ourcamera)
+    reviews = None
+    if camerareview.objects.filter(cameraid=id):
+        reviews = camerareview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourcamera":ourcamera,"user":user}
+    params = {"ourcamera":ourcamera,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/camera.html',params)
     
 
 def fridgeview(request,id):
     ourfridge = Refrigerator.objects.get(id=id)
     ourfridge = make_rating(ourfridge)
+    reviews = None
+    if fridgereview.objects.filter(fridgeid=id):
+        reviews = fridgereview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourfridge":ourfridge,"user":user}
+    params = {"ourfridge":ourfridge,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/fridge.html',params)
     
 
 def kettleview(request,id):
     ourkettle = Kettle.objects.get(id=id)
     ourkettle = make_rating(ourkettle)
+    reviews = None
+    if kettlereview.objects.filter(kettleid=id):
+        reviews = kettlereview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourkettle":ourkettle,"user":user}
+    params = {"ourkettle":ourkettle,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/kettle.html',params)
     
 
 def washmachineview(request,id):
     ourwashmachine = WashingMachine.objects.get(id=id)
     ourwashmachine = make_rating(ourwashmachine)
+    reviews = None
+    if washmanchinereview.objects.filter(washmachineid=id):
+        reviews = washmanchinereview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourwashmachine":ourwashmachine,"user":user}
+    params = {"ourwashmachine":ourwashmachine,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/washmachine.html',params)
     
 
 def televisionview(request,id):
     ourtelevision = Television.objects.get(id=id)
     ourtelevision = make_rating(ourtelevision)
+    reviews = None
+    if televisionreview.objects.filter(televisionid=id):
+        reviews = televisionreview.objects.all()
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    params = {"ourtelevision":ourtelevision,"user":user}
+    params = {"ourtelevision":ourtelevision,"user":user,"reviews":reviews}
     return render(request,'GRSapp/endViews/television.html',params)
 
 
 
-        
+# make comments
+
+def makemobcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        mobileid = request.POST['mobileid']
+        commnet = request.POST['comment']
+        comobj = mobilereview.objects.create(userid=username,mobileid=mobileid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+def makelapcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        laptopid = request.POST['laptopid']
+        commnet = request.POST['comment']
+        comobj = laptopreview.objects.create(userid=username,laptopid=laptopid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+def makeketcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        kettleid = request.POST['kettleid']
+        commnet = request.POST['comment']
+        comobj = kettlereview.objects.create(userid=username,kettleid=kettleid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+def makehstcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        headsetid = request.POST['headsetid']
+        commnet = request.POST['comment']
+        comobj = headsetreview.objects.create(userid=username,headsetid=headsetid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+def makefdgcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        fridgeid = request.POST['fridgeid']
+        commnet = request.POST['comment']
+        comobj = fridgereview.objects.create(userid=username,fridgeid=fridgeid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+def makecamcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        cameraid = request.POST['cameraid']
+        commnet = request.POST['comment']
+        comobj = camerareview.objects.create(userid=username,cameraid=cameraid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+def makepbkcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        powerbankid = request.POST['powerbankid']
+        commnet = request.POST['comment']
+        comobj = powerbankreview.objects.create(userid=username,powerbankid=powerbankid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+def maketelcom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        televisionid = request.POST['televisionid']
+        commnet = request.POST['comment']
+        comobj = televisionreview.objects.create(userid=username,televisionid=televisionid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+def makewhncom(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        washmachineid = request.POST['washmachineid']
+        commnet = request.POST['comment']
+        comobj = washmanchinereview.objects.create(userid=username,washmachineid=washmachineid,reviewmsg=commnet)
+        comobj.save()
+        return HttpResponse('this is post methos')
+    else:
+        return redirect('/')
+
+
+
+
+
+
     
 

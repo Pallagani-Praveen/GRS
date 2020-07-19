@@ -203,6 +203,95 @@ class WashingMachine(models.Model):
     def __str__(self):
         return self.brandname + ',' + self.modelname
 
+# all review models goes here
+
+class mobilereview(models.Model):
+    userid = models.CharField(max_length=50)
+    mobileid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class laptopreview(models.Model):
+    userid = models.CharField(max_length=50)
+    laptopid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class headsetreview(models.Model):
+    userid = models.CharField(max_length=50)
+    headsetid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class camerareview(models.Model):
+    userid = models.CharField(max_length=50)
+    cameraid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class powerbankreview(models.Model):
+    userid = models.CharField(max_length=50)
+    powerbankid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+    
+class kettlereview(models.Model):
+    userid = models.CharField(max_length=50)
+    kettleid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class washmanchinereview(models.Model):
+    userid = models.CharField(max_length=50)
+    washmachineid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+class fridgereview(models.Model):
+    userid = models.CharField(max_length=50)
+    fridgeid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+    
+class televisionreview(models.Model):
+    userid = models.CharField(max_length=50)
+    televisionid = models.IntegerField()
+    reviewmsg = models.TextField()
+    class Meta:
+        ordering = ['-id']
+    def __str__(self):
+        return self.reviewmsg
+
+
+
+
+    
+
 
 
 

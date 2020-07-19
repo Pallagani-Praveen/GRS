@@ -22,7 +22,15 @@ urlpatterns = [
     path('fridges/<int:id>',views.fridgeview,name="fridgeview"),
     path('kettles/<int:id>',views.kettleview,name="kettleview"),
     path('televisions/<int:id>',views.televisionview,name="televisionview"),
-    path('washmachines/<int:id>',views.washmachineview,name="washmanchineview")
+    path('washmachines/<int:id>',views.washmachineview,name="washmanchineview"),
 
-    
+    path('makemobcom',views.makemobcom,name="makemobcom"),
+    path('makelapcom',views.makelapcom,name="makelapcom"),
+    path('makeketcom',views.makeketcom,name="makeketcom"),
+    path('makehstcom',views.makehstcom,name="makehstcom"),
+    path('makefdgcom',views.makefdgcom,name="makefdgcom"),
+    path('makecamcom',views.makecamcom,name="makecamcom"),
+    path('makepbkcom',views.makepbkcom,name="makepbkcom"),
+    path('maketelcom',views.maketelcom,name="maketelcom"),
+    path('makewhncom',views.makewhncom,name="makewhncom")
 ]
