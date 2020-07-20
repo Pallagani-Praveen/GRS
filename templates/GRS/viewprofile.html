@@ -6,6 +6,25 @@ small{
     color:blue;
 }
 
+.admin-div{
+    border:2px solid #eee;
+    max-width:500px;
+    margin:0 auto;
+    padding:20px;
+}
+
+.admin-div input{
+    margin-right:10px;
+}
+
+.admin-div span{
+    margin-right:10px;
+}
+
+.disabled{
+    text-decoration:none;
+    color:#666;
+}
 
 {% endblock css %}
 
@@ -22,7 +41,7 @@ Profile Page
 <h3 class="my-2 col text-primary lead font-weight-bold">Hi, {{userobj.username}}</h3>
 <div class="custom-control custom-switch">
   <input type="checkbox" class="custom-control-input" name="edit" id="customSwitch1" onchange="editprofile(this)">
-  <label class="custom-control-label text-warning"  for="customSwitch1">Edit Profile</label>
+  <label class="custom-control-label text-light"  for="customSwitch1">Edit Profile</label>
 </div>
 </div>
 <hr>
@@ -65,6 +84,11 @@ Profile Page
 <button type="submit" class="btn btn-info float-right" id="update-btn">Update</button>
 </form>
 </div>
+
+<div class="admin-div">
+    <input id="admin-check" type="checkbox" name="admin-check" /><span class="text-danger">Are you a admin ?</span>
+    <a id="admin-url" class="text-light">Go to panel</a>
+</div>
 {% endblock body %}
 
 
@@ -72,7 +96,30 @@ Profile Page
 $(function(){
     makereadonly();
     $('#update-btn').css('display','none');
+
+    if($('#admin-check').prop("checked")==true){
+        $('#admin-url').attr('href','/admin-panel');
+        $('#admin-url').removeClass('disabled');
+    }
+    else{
+        $('#admin-url').addClass('disabled');
+        $('#admin-url').removeAttr('href');
+    }
+    
 });
+
+
+$('#admin-check').on('click',()=>{
+    if($('#admin-check').prop("checked")==true){
+        $('#admin-url').attr('href','/admin-panel');
+        $('#admin-url').removeClass('disabled');
+    }
+    else{
+        $('#admin-url').addClass('disabled');
+        $('#admin-url').removeAttr('href');
+    }
+});
+
 
 function editprofile(checkbox){
     if(checkbox.checked==true){

@@ -1,6 +1,6 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,redirect
-from GRSapp.models import UsersModal,ContactModel,itemslist,Mobiles,Laptops,HeadSet,Camera,Powerbank,Kettle,WashingMachine,Refrigerator,Television
+from GRSapp.models import UsersModal,ContactModel,itemslist,Mobiles,Laptops,HeadSet,Camera,Powerbank,Kettle,WashingMachine,Refrigerator,Television,AdminModel
 from django.contrib import messages
 from GRS.randkey import randnum,genOTP
 from datetime import datetime
@@ -211,6 +211,21 @@ def issue(request):
     else:
         return redirect("/")
 
+def adminpanel(request):
+    user = request.COOKIES.get('username')
+    if not user:
+        return redirect('/')
+    else:
+        if AdminModel.objects.filter(username=user):
+            userid = UsersModal.objects.get(username=user).id
+            print(userid)
+            if AdminModel.objects.filter(userid=userid):
+                user = UsersModal.objects.get(username=user)
+                allcontacts = ContactModel.objects.all()
+                params = {"user":user,"contacts":allcontacts}
+                return render(request,'GRS/admin.html',params)
+        
+    return render(request,'GRS/url_error.html')
 
 def search(request):
     user = request.COOKIES.get('username')

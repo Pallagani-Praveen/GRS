@@ -18,6 +18,7 @@ urlpatterns = [
     path('viewprofile',views.viewprofile,name = 'viewprofile'),
     path('updateprofile',views.updateprofile,name = 'updateprofile'),
     path('issue',views.issue,name = 'issue'),
+    path('admin-panel',views.adminpanel,name="admin-panel"),
     path('GRSapp/',include('GRSapp.urls')),
     # error handling url
     path('<slug:slug>',views.error_page_view_one,name="handle_erro_urls"),

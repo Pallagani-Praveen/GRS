@@ -10,6 +10,11 @@ class ContactModel(models.Model):
     def __str__(self):
         return self.name+','+self.email
     
+class AdminModel(models.Model):
+    username = models.CharField(max_length=50)
+    userid = models.IntegerField()
+    def __str__(self):
+        return self.username
 
 class UsersModal(models.Model):
     firstname = models.CharField(max_length=50)

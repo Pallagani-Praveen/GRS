@@ -43,19 +43,19 @@ def GRSappHome(request):
     fridges = paginator6.get_page(page6)
 
     kettles = Kettle.objects.all()
-    paginator7 = Paginator(kettles,4)
+    paginator7 = Paginator(kettles,5)
     page7 = request.GET.get('page7')
     kettles = paginator7.get_page(page7)
 
 
     tvs = Television.objects.all()
-    paginator8 = Paginator(tvs,8)
+    paginator8 = Paginator(tvs,4)
     page8 = request.GET.get('page8')
     tvs = paginator8.get_page(page8)
 
 
     wms = WashingMachine.objects.all()
-    paginator9 = Paginator(wms,8)
+    paginator9 = Paginator(wms,5)
     page9 = request.GET.get('page9')
     wms = paginator9.get_page(page9)
 
@@ -76,7 +76,7 @@ def loadmobiles(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    mobiles = Mobiles.objects.all()
+    mobiles = Mobiles.objects.all().order_by('-rating')
     mobiles = make_ratings(mobiles)
     params = {"user":user,"mobiles":mobiles}
     return render(request,'GRSapp/loadMobiles.html',params)
@@ -85,7 +85,7 @@ def loadlaptops(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    laptops = Laptops.objects.all()
+    laptops = Laptops.objects.all().order_by('-rating')
     laptops = make_ratings(laptops)
     params = {"user":user,"laptops":laptops}
     return render(request,'GRSapp/loadLaptops.html',params)
@@ -94,7 +94,7 @@ def loadheadsets(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    headsets = HeadSet.objects.all()
+    headsets = HeadSet.objects.all().order_by('-rating')
     headsets = make_ratings(headsets)
     params = {"user":user,"headsets":headsets}
     return render(request,'GRSapp/loadHeadsets.html',params)
@@ -103,7 +103,7 @@ def loadcameras(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    cameras = Camera.objects.all()
+    cameras = Camera.objects.all().order_by('-rating')
     cameras = make_ratings(cameras)
     params = {"user":user,"cameras":cameras}
     return render(request,'GRSapp/loadCameras.html',params)
@@ -112,7 +112,7 @@ def loadpowerbanks(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    pbanks = Powerbank.objects.all()
+    pbanks = Powerbank.objects.all().order_by('-rating')
     pbanks = make_ratings(pbanks)
     params = {"user":user,"pbanks":pbanks}
     return render(request,'GRSapp/loadPowerbanks.html',params)
@@ -121,7 +121,7 @@ def loadkettles(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    kettles = Kettle.objects.all()
+    kettles = Kettle.objects.all().order_by('-rating')
     kettles = make_ratings(kettles)
     params = {"user":user,"kettles":kettles}
     return render(request,'GRSapp/loadKettles.html',params)
@@ -130,7 +130,7 @@ def loadwashmachines(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    wms = WashingMachine.objects.all()
+    wms = WashingMachine.objects.all().order_by('-rating')
     wms = make_ratings(wms)
     params = {"user":user,"wms":wms}
     return render(request,'GRSapp/loadWashmachines.html',params)
@@ -139,7 +139,7 @@ def loadfridges(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    fridges = Refrigerator.objects.all()
+    fridges = Refrigerator.objects.all().order_by('-rating')
     fridges = make_ratings(fridges)
     params = {"user":user,"fridges":fridges}
     return render(request,'GRSapp/loadFridges.html',params)
@@ -148,7 +148,7 @@ def loadtelevisions(request):
     user = request.COOKIES.get('username')
     if UsersModal.objects.filter(username=user):
         user = UsersModal.objects.get(username=user)
-    televisions = Television.objects.all()
+    televisions = Television.objects.all().order_by('-rating')
     televisions = make_ratings(televisions)
     params = {"user":user,"televisions":televisions}
     return render(request,'GRSapp/loadTelevisions.html',params)

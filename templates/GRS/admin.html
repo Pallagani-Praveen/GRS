@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+ADMIN PAGE
+{% endblock title %}
+
+{% block css %}
+li{
+    list-style-type:none;
+    padding:10px;
+    border-radius:4px;
+}
+{% endblock css %}
+
+{% block body %}
+    <div class="container mt-3">
+        {% if contacts %}
+            {% for contact in contacts %}
+                <li class="bg-light d-flex justify-content-between m-1">
+                <div class="info">
+                    <span class="text-danger">{{contact.name}}</span> : 
+                    <span class="text-primary">{{contact.message}}</span>
+                </div>
+                <div class="reply-btn"> 
+                    <button role="button" class="btn btn-primary" data-toggle="collapse" data-target="#contact{{forloop.counter}}">Reply</button>
+                <div>
+                </li>
+                <li class="collapse" id="contact{{forloop.counter}}">
+                    <div class="card card-body replay-card" style="background:#ddd;">
+                        <span class="text-info">Send Reply to {{contact.email}}</span>
+                        <hr>
+                        <textarea style="height:200px;padding:0;" required>
+                        </textarea>
+                        <input type="button" value="send response" class="btn btn-success mt-3" id=""/>
+                    </div>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock body %}
