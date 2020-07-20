@@ -29,9 +29,13 @@ li{
                     <div class="card card-body replay-card" style="background:#ddd;">
                         <span class="text-info">Send Reply to {{contact.email}}</span>
                         <hr>
-                        <textarea style="height:200px;padding:0;" required>
+                        <form method="POST" action="/admin-panel">
+                        {% csrf_token %}
+                            <input name="tuser" value="{{contact.name}}" hidden/>
+                        <textarea class="form-control"style="height:200px;padding:0;" required>
                         </textarea>
-                        <input type="button" value="send response" class="btn btn-success mt-3" id=""/>
+                        <input type="submit" value="send response" class="btn btn-success mt-3" id=""/>
+                        </form>
                     </div>
                 </li>
             {% endfor %}

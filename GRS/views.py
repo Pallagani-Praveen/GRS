@@ -216,6 +216,9 @@ def adminpanel(request):
     if not user:
         return redirect('/')
     else:
+        if request.method=="POST":
+            tuser = request.POST['tuser']
+            messages.success(request,'Reply was send to the '+tuser)
         if AdminModel.objects.filter(username=user):
             userid = UsersModal.objects.get(username=user).id
             print(userid)
